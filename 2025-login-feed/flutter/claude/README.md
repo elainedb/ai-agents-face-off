@@ -24,7 +24,7 @@ Please follow the [Firebase Setup Guide](FIREBASE_SETUP.md) to configure the app
 
 2. **Configure Firebase:** (See [FIREBASE_SETUP.md](FIREBASE_SETUP.md) for detailed instructions)
    ```bash
-   # Copy configuration templates
+   # Copy configuration templates for local development
    cp lib/config/auth_config.template.dart lib/config/auth_config.dart
    cp android/app/google-services.json.template android/app/google-services.json
    cp ios/Runner/GoogleService-Info.plist.template ios/Runner/GoogleService-Info.plist
@@ -47,6 +47,16 @@ This project follows Clean Architecture principles:
 
 ## Security
 
-- Firebase configuration files are not committed to version control
-- Authorized email lists are stored in secure config files
-- API keys and sensitive data are properly excluded from the repository
+- Firebase configuration files (with API keys) are not committed to version control
+- Authorized email lists are stored in secure config files (not committed)
+- CI uses auto-generated safe defaults (empty authorized list)
+- Sensitive API keys and data are properly excluded from the repository
+
+## CI/CD Setup
+
+For CI/CD environments, run the setup script before analysis:
+
+```bash
+./scripts/setup_ci.sh
+flutter analyze
+```

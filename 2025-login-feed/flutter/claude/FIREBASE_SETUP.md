@@ -13,7 +13,7 @@ This project uses Firebase for authentication. The Firebase configuration files 
 ### 1. Auth Configuration
 
 ```bash
-# Copy and customize the auth config
+# Copy template and customize with real email addresses
 cp lib/config/auth_config.template.dart lib/config/auth_config.dart
 ```
 
@@ -28,6 +28,8 @@ class AuthConfig {
   ];
 }
 ```
+
+**Note:** The `auth_config.dart` file is not committed to version control for security.
 
 ### 2. Android Configuration
 
@@ -92,8 +94,8 @@ flutter run
 
 - **Never commit** `google-services.json` or `GoogleService-Info.plist` to version control
 - **Never commit** `lib/config/auth_config.dart` to version control
-- These files contain sensitive API keys and configuration data
-- Each developer needs their own copy of these files
+- Firebase config files contain sensitive API keys and configuration data
+- Each developer needs their own copy of these configuration files
 - Use different Firebase projects for development, staging, and production
 
 ## Troubleshooting
@@ -114,6 +116,22 @@ If you get import errors:
 2. Verify the files are in the correct locations
 3. Run `flutter clean && flutter pub get`
 
+### CI/CD Setup
+
+If you're setting up CI/CD, run the setup script before analysis:
+
+```bash
+# Run CI setup script
+./scripts/setup_ci.sh
+
+# Or manually create missing config
+dart scripts/ensure_config.dart
+
+# Then run your CI commands
+flutter analyze
+flutter test
+```
+
 ## File Structure
 
 ```
@@ -129,4 +147,8 @@ android/app/
 ios/Runner/
 ├── GoogleService-Info.plist          # ❌ Not committed (sensitive)
 └── GoogleService-Info.plist.template # ✅ Committed (template)
+
+scripts/
+├── ensure_config.dart            # ✅ Committed (CI helper script)
+└── setup_ci.sh                   # ✅ Committed (CI setup script)
 ```
