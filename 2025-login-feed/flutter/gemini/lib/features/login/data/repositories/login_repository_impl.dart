@@ -1,11 +1,12 @@
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_gemini/core/errors/failures.dart';
 import 'package:flutter_gemini/features/login/data/datasources/login_remote_data_source.dart';
 import 'package:flutter_gemini/features/login/domain/repositories/login_repository.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:flutter_gemini/core/config/app_config.dart';
+const authorizedEmailsFromEnv = String.fromEnvironment('AUTHORIZED_EMAILS');
 
 @LazySingleton(as: LoginRepository)
 class LoginRepositoryImpl implements LoginRepository {
@@ -17,8 +18,9 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<Either<Failure, Unit>> signInWithGoogle() async {
     try {
       final email = await remoteDataSource.signInWithGoogle();
+      final authorizedEmails = authorizedEmailsFromEnv.isNotEmpty ? authorizedEmailsFromEnv.split(',') : ['dummy@example.com'];
       if (authorizedEmails.contains(email)) {
-        print('Access granted to $email');
+        debugPrint('Access granted to $email');
         return const Right(unit);
       } else {
         await remoteDataSource.signOut();
