@@ -5,17 +5,16 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
-
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack initialRouteName="index">
+        {/* Explicitly declare the login (index) screen to ensure proper mounting after logout */}
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        {/* Use a simple Stack screen for Account to avoid Tabs-related mount/unmount issues */}
+        <Stack.Screen name="account" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
       </Stack>
       <StatusBar style="auto" />
