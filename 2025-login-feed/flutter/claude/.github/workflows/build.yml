@@ -21,10 +21,12 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Setup CI
+        run: ./scripts/setup_ci.sh
+
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
         run: flutter analyze
-
       - name: Run tests
         run: flutter test --coverage
       - name: SonarQube Scan
