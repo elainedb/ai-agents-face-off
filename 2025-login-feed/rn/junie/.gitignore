@@ -44,3 +44,39 @@ app-example
 # generated native folders
 /ios
 /android
+
+# Local authorized emails config (do not commit)
+authorized-emails.local.json
+authorized-emails.local.example.json
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+
+# Expo & RN
+.expo/
+.expo-shared/
+android/app/build/
+ios/build/
+web-build/
+
+# Jest coverage
+coverage/
+
+
+# Firebase config (do not commit)
+# Root-level google services file (if present)
+google-services.json
+# Android app-specific google services file
+android/app/google-services.json
