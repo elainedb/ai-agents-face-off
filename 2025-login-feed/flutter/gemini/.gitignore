@@ -46,6 +46,8 @@ app.*.map.json
 
 # Environment variables
 .env
+lib/core/config/authorized_emails.txt
+assets/authorized_emails.local.txt
 
 
 
