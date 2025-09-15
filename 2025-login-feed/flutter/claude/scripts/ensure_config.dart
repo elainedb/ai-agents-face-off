@@ -6,7 +6,7 @@ void main() {
   final configFile = File('lib/config/auth_config.dart');
 
   if (!configFile.existsSync()) {
-    print('auth_config.dart missing, creating CI-safe version...');
+
 
     final ciConfig = '''/// Authentication configuration (CI-safe fallback)
 ///
@@ -19,8 +19,8 @@ class AuthConfig {
 ''';
 
     configFile.writeAsStringSync(ciConfig);
-    print('Created CI-safe auth_config.dart');
+
   } else {
-    print('auth_config.dart already exists');
+
   }
 }
