@@ -66,8 +66,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/authorized_emails.txt
-    - assets/authorized_emails.local.txt
+    - assets/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
