@@ -35,6 +35,15 @@ sonar {
         // Exclude test sources from analysis entirely
         property("sonar.sources", "app/src/main")
         property("sonar.tests", "app/src/test,app/src/androidTest")
+
+        // Exclude build artifacts and generated files to prevent duplicate indexing
+        property("sonar.exclusions",
+            "**/build/**," +
+            "**/target/**," +
+            "**/intermediates/**," +
+            "**/generated/**," +
+            "**/tmp/**"
+        )
     }
 }
 
