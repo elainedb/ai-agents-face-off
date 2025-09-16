@@ -11,7 +11,6 @@ sonar {
         property("sonar.projectKey", "elainedb_android_gemini")
         property("sonar.organization", "elainedb")
         property("sonar.sourceEncoding", "UTF-8")
-        property("sonar.coverage.jacoco.xmlReportPaths", "app/build/reports/jacoco/JacocoDebugCodeCoverage")
     }
 }
 
@@ -21,6 +20,7 @@ subprojects {
             if (name == "app") {
                 property("sonar.sources", "src/main/java")
                 property("sonar.tests", "src/test/java")
+                property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/JacocoDebugCodeCoverage/JacocoDebugCodeCoverage.xml")
             }
         }
     }
