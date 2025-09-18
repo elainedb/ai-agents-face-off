@@ -1,19 +1,25 @@
 # flutter_claude
 
-A Flutter app with Google Sign-In authentication and authorized user access control.
+A Flutter app with Google Sign-In authentication that displays YouTube videos from specified channels.
 
 ## Features
 
-- Google Sign-In authentication
-- Authorized email list control
+- Google Sign-In authentication with authorized email control
+- YouTube video feed from 4 specified channels
 - Clean architecture with BLoC state management
 - Secure configuration management
+- Video thumbnail display with publication dates
+- Launch videos in YouTube app or browser
 
 ## Setup
 
-⚠️ **Important:** This project requires Firebase configuration files that are not included in the repository for security reasons.
+⚠️ **Important:** This project requires Firebase and YouTube API configuration files that are not included in the repository for security reasons.
 
-Please follow the [Firebase Setup Guide](FIREBASE_SETUP.md) to configure the app before running.
+### Prerequisites
+
+- Flutter SDK
+- Firebase project with Google Sign-In enabled
+- YouTube Data API v3 key from Google Cloud Console
 
 ### Quick Setup
 
@@ -22,17 +28,37 @@ Please follow the [Firebase Setup Guide](FIREBASE_SETUP.md) to configure the app
    flutter pub get
    ```
 
-2. **Configure Firebase:** (See [FIREBASE_SETUP.md](FIREBASE_SETUP.md) for detailed instructions)
+2. **Configure authentication and API keys:**
    ```bash
    # Copy configuration templates for local development
    cp lib/config/auth_config.template.dart lib/config/auth_config.dart
-   cp android/app/google-services.json.template android/app/google-services.json
-   cp ios/Runner/GoogleService-Info.plist.template ios/Runner/GoogleService-Info.plist
+   cp lib/config/config.template.dart lib/config/config.dart
    ```
 
-3. **Customize configuration files with your Firebase project settings**
+3. **Customize configuration files:**
 
-4. **Run the app:**
+   **lib/config/auth_config.dart:**
+   ```dart
+   class AuthConfig {
+     static const List<String> authorizedEmails = [
+       'your-email@example.com',
+       'another-email@example.com',
+     ];
+   }
+   ```
+
+   **lib/config/config.dart:**
+   ```dart
+   class Config {
+     static const String youtubeApiKey = 'YOUR_YOUTUBE_API_KEY_HERE';
+   }
+   ```
+
+4. **Set up Firebase configuration files:** (See [Firebase Setup Guide](https://firebase.flutter.dev/docs/overview))
+   - Add `android/app/google-services.json` for Android
+   - Add `ios/Runner/GoogleService-Info.plist` for iOS
+
+5. **Run the app:**
    ```bash
    flutter run
    ```
@@ -48,15 +74,28 @@ This project follows Clean Architecture principles:
 ## Security
 
 - Firebase configuration files (with API keys) are not committed to version control
+- YouTube API keys are stored in secure config files (not committed)
 - Authorized email lists are stored in secure config files (not committed)
-- CI uses auto-generated safe defaults (empty authorized list)
+- CI uses auto-generated safe defaults (empty authorized list, placeholder API key)
 - Sensitive API keys and data are properly excluded from the repository
 
 ## CI/CD Setup
 
-For CI/CD environments, run the setup script before analysis:
+For CI/CD environments, run the configuration script before analysis:
 
 ```bash
-./scripts/setup_ci.sh
+dart scripts/ensure_config.dart
 flutter analyze
+flutter test
 ```
+
+This script automatically creates safe placeholder configuration files when the actual config files are missing (like in CI environments).
+
+## Getting YouTube API Key
+
+1. Go to the [Google Cloud Console](https://console.developers.google.com/)
+2. Create a new project or select an existing one
+3. Enable the YouTube Data API v3
+4. Go to Credentials and create an API key
+5. Restrict the API key to YouTube Data API v3 (recommended)
+6. Copy the API key to `lib/config/config.dart`

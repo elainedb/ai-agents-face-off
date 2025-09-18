@@ -46,6 +46,7 @@ app.*.map.json
 
 # Configuration files with sensitive data
 lib/config/auth_config.dart
+lib/config/config.dart
 
 # Firebase configuration files (contain API keys)
 android/app/google-services.json

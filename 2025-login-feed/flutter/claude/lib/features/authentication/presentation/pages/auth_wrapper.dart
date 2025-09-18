@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../di.dart';
+import '../../../videos/presentation/bloc/videos_bloc.dart';
+import '../../../videos/presentation/pages/videos_page.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';
-import 'logged_page.dart';
 import 'login_page.dart';
 
 class AuthWrapper extends StatelessWidget {
@@ -30,7 +32,10 @@ class AuthWrapperView extends StatelessWidget {
           loading: () => const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           ),
-          authenticated: (user) => LoggedPage(user: user),
+          authenticated: (user) => BlocProvider(
+            create: (_) => getIt<VideosBloc>(),
+            child: VideosPage(user: user),
+          ),
           unauthenticated: () => const LoginView(),
           error: (message) => Scaffold(
             body: Center(

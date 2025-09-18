@@ -25,8 +25,19 @@ import 'package:flutter_claude/features/authentication/domain/usecases/sign_out.
     as _i987;
 import 'package:flutter_claude/features/authentication/presentation/bloc/auth_bloc.dart'
     as _i810;
+import 'package:flutter_claude/features/videos/data/datasources/videos_remote_datasource.dart'
+    as _i529;
+import 'package:flutter_claude/features/videos/data/repositories/videos_repository_impl.dart'
+    as _i845;
+import 'package:flutter_claude/features/videos/domain/repositories/videos_repository.dart'
+    as _i274;
+import 'package:flutter_claude/features/videos/domain/usecases/get_videos.dart'
+    as _i585;
+import 'package:flutter_claude/features/videos/presentation/bloc/videos_bloc.dart'
+    as _i354;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
+import 'package:http/http.dart' as _i519;
 import 'package:injectable/injectable.dart' as _i526;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -39,14 +50,26 @@ extension GetItInjectableX on _i174.GetIt {
     final registerModule = _$RegisterModule();
     gh.singleton<_i59.FirebaseAuth>(() => registerModule.firebaseAuth);
     gh.singleton<_i116.GoogleSignIn>(() => registerModule.googleSignIn);
+    gh.singleton<_i519.Client>(() => registerModule.httpClient);
     gh.lazySingleton<_i1020.AuthRemoteDataSource>(
       () => _i1020.AuthRemoteDataSourceImpl(
         gh<_i59.FirebaseAuth>(),
         gh<_i116.GoogleSignIn>(),
       ),
     );
+    gh.lazySingleton<_i529.VideosRemoteDataSource>(
+      () => _i529.VideosRemoteDataSourceImpl(client: gh<_i519.Client>()),
+    );
     gh.lazySingleton<_i246.AuthRepository>(
       () => _i547.AuthRepositoryImpl(gh<_i1020.AuthRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i274.VideosRepository>(
+      () => _i845.VideosRepositoryImpl(
+        remoteDataSource: gh<_i529.VideosRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i585.GetVideos>(
+      () => _i585.GetVideos(gh<_i274.VideosRepository>()),
     );
     gh.factory<_i987.SignOut>(() => _i987.SignOut(gh<_i246.AuthRepository>()));
     gh.factory<_i178.SignInWithGoogle>(
@@ -61,6 +84,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i987.SignOut>(),
         gh<_i98.GetCurrentUser>(),
       ),
+    );
+    gh.factory<_i354.VideosBloc>(
+      () => _i354.VideosBloc(getVideos: gh<_i585.GetVideos>()),
     );
     return this;
   }
