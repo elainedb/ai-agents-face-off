@@ -47,6 +47,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+      - name: Create config file
+        run: |
+          mkdir -p app/src/main/res/raw
+          echo "authorized_emails=dummy1@example.com,dummy2@example.com" > app/src/main/res/raw/config.properties
       - name: JaCoCo
         run: ./gradlew :app:testDebugUnitTest :app:JacocoDebugCodeCoverage
       - name: Analyze with SonarCloud
