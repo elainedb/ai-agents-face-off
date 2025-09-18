@@ -10,9 +10,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import dev.elainedb.android_gemini.presentation.login.HomeScreen
 import dev.elainedb.android_gemini.presentation.login.LoginScreen
 import dev.elainedb.android_gemini.presentation.login.LoginViewModel
+import dev.elainedb.android_gemini.presentation.main.MainScreen
 import dev.elainedb.android_gemini.ui.theme.AndroidGeminiTheme
 
 @AndroidEntryPoint
@@ -35,10 +35,16 @@ fun AppNavigation() {
 
     NavHost(navController = navController, startDestination = "login") {
         composable("login") {
-            LoginScreen(onLoginSuccess = { navController.navigate("home") })
+            LoginScreen(onLoginSuccess = {
+                navController.navigate("home") {
+                    popUpTo("login") {
+                        inclusive = true
+                    }
+                }
+            })
         }
         composable("home") {
-            HomeScreen(onLogout = {
+            MainScreen(onLogout = {
                 loginViewModel.signOut {
                     navController.navigate("login") {
                         popUpTo("home") {
