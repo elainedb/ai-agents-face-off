@@ -39,7 +39,6 @@ class VideoRemoteDataSourceImpl implements VideoRemoteDataSource {
         Uri.parse(
             'https://www.googleapis.com/youtube/v3/search?key=$apiKey&channelId=$channelId&part=snippet,id&order=date&maxResults=10'),
       );
-      print(response.body);
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         final items = data['items'] as List;

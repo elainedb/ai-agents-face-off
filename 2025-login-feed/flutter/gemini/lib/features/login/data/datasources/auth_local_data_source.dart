@@ -16,7 +16,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
       content = await rootBundle.loadString('assets/authorized_emails.txt');
     }
     final emails = content.split('\n').where((line) => line.isNotEmpty).toList();
-    print('Authorized emails loaded: $emails');
     return emails;
   }
 }

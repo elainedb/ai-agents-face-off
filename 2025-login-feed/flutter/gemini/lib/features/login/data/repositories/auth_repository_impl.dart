@@ -15,7 +15,6 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final authorizedEmails = await localDataSource.getAuthorizedEmails();
       final isAuthorized = authorizedEmails.contains(email);
-      print('Checking email: $email, Is authorized: $isAuthorized');
       return Right(isAuthorized);
     } catch (e) {
       return Left(CacheFailure(e.toString()));

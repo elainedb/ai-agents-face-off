@@ -76,7 +76,6 @@ flutter:
   assets:
     - assets/
     - assets/api_key.txt
-    - assets/api_key_local.txt
 
   # To add assets to your application, add an assets section, like this:
   # assets:
