@@ -48,3 +48,17 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+## Project Setup Notes
+
+- Authorized Emails for Login:
+  - Configure allowed emails via one of these methods:
+    - Set environment variable EXPO_PUBLIC_AUTHORIZED_EMAILS="email1@example.com,email2@example.com" OR
+    - Create an authorized-emails.local.json at the repo root with an array of emails, or use the provided authorized-emails.local.example.json as a template.
+  - These are injected into Expo config by app.config.js and used by the Login screen.
+
+- YouTube Data API Key:
+  - Preferred: set environment variable EXPO_PUBLIC_YOUTUBE_API_KEY="YOUR_YOUTUBE_API_KEY" (works locally and in CI/EAS).
+  - Alternatively for local dev: copy config.example.js to config.js in the repo root and set export const youtubeApiKey = "YOUR_YOUTUBE_API_KEY". config.js is gitignored.
+  - app.config.js injects the key into Expo config extras, and the app reads it from there. No direct import of config.js is needed.

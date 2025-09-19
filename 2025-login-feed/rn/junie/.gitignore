@@ -80,3 +80,6 @@ coverage/
 google-services.json
 # Android app-specific google services file
 android/app/google-services.json
+
+# YouTube API local config (do not commit)
+config.js

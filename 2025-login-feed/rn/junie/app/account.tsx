@@ -1,109 +1,78 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { useFocusEffect, useRouter } from 'expo-router';
+import React, { useEffect, useMemo, useState } from 'react';
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ActivityIndicator, Linking, RefreshControl } from 'react-native';
+import { fetchCombinedChannelVideos, formatDateYYYYMMDD, YoutubeVideo } from '../utils/youtube';
 
-function log(tag: string, message: string, extra?: any) {
-  const ts = new Date().toISOString();
-  if (extra !== undefined) {
-    console.log(`[Account ${tag}] ${ts} - ${message}`, extra);
-  } else {
-    console.log(`[Account ${tag}] ${ts} - ${message}`);
-  }
-}
+const CHANNEL_IDS = [
+  'UCynoa1DjwnvHAowA_jiMEAQ',
+  'UCK0KOjX3beyB9nzonls0cuw',
+  'UCACkIrvrGAQ7kuc0hMVwvmA',
+  'UCtWRAKKvOEA0CXOue9BG8ZA',
+];
 
-export default function AccountScreen() {
-  const router = useRouter();
-  const [email, setEmail] = useState<string>('');
+export default function MainScreen() {
+  const [videos, setVideos] = useState<YoutubeVideo[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        log('INIT', 'Reading current user on mount');
-        const current = await GoogleSignin.getCurrentUser();
-        if (mounted) {
-          setEmail(current?.user?.email ?? '');
-          log('STATE', 'Set email on mount', { email: current?.user?.email });
-        }
-      } catch (e: any) {
-        if (mounted) setError(e?.message || 'Failed to retrieve current user.');
-        log('ERROR', 'Failed to get current user on mount', e);
-      }
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  // Refresh user info whenever this screen is focused to avoid stale state after logout/login cycles
-  useFocusEffect(
-    useCallback(() => {
-      let active = true;
-      (async () => {
-        try {
-          log('FOCUS', 'Screen focused, refreshing current user');
-          const current = await GoogleSignin.getCurrentUser();
-          if (active) {
-            setEmail(current?.user?.email ?? '');
-            log('STATE', 'Updated email on focus', { email: current?.user?.email });
-          }
-        } catch (e: any) {
-          if (active) setError(e?.message || 'Failed to retrieve current user.');
-          log('ERROR', 'Failed to get current user on focus', e);
-        }
-      })();
-      return () => {
-        active = false;
-      };
-    }, [])
-  );
-
-  const handleLogout = useCallback(async () => {
+  const load = async () => {
     setError(null);
-    setLoading(true);
     try {
-      log('ACTION', 'Logout pressed');
-      // Revoke and sign out to fully disconnect
-      try { log('RESET', 'Revoking access'); await GoogleSignin.revokeAccess(); } catch (e) { log('RESET', 'Revoke failed (ignored)', e); }
-      try { log('RESET', 'Signing out'); await GoogleSignin.signOut(); } catch (e) { log('RESET', 'Sign out failed (ignored)', e); }
-      // Clear local state so the UI reflects the logged-out state
-      setEmail('');
-      log('STATE', 'Cleared email after logout');
-      // Stay on this screen so the button label can change to "Login"
+      const data = await fetchCombinedChannelVideos(CHANNEL_IDS, 10);
+      setVideos(data);
     } catch (e: any) {
-      setError(e?.message || 'Failed to log out.');
-      log('ERROR', 'Logout flow error', e);
+      setError(e?.message || 'Failed to load videos.');
     } finally {
       setLoading(false);
-      log('FLOW', 'Logout finished');
+      setRefreshing(false);
     }
+  };
+
+  useEffect(() => {
+    load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleLogin = useCallback(() => {
-    log('NAV', 'Navigating to / (login)');
-    // Replace the current screen with the login to avoid nested navigator glitches
-    router.replace('/');
-  }, [router]);
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await load();
+  };
 
-  const isSignedIn = !!email;
-  const buttonTitle = loading ? (isSignedIn ? 'Logging out...' : 'Logging in...') : (isSignedIn ? 'Logout' : 'Login');
-  const onPress = isSignedIn ? handleLogout : handleLogin;
+  const renderItem = ({ item }: { item: YoutubeVideo }) => (
+    <TouchableOpacity style={styles.card} onPress={() => Linking.openURL(`https://www.youtube.com/watch?v=${item.id}`)}>
+      {!!item.thumbnailUrl && (
+        <Image source={{ uri: item.thumbnailUrl }} style={styles.thumbnail} resizeMode="cover" />
+      )}
+      <View style={styles.meta}>
+        <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
+        <Text style={styles.sub}>{item.channelTitle}</Text>
+        <Text style={styles.date}>{formatDateYYYYMMDD(item.publishedAt)}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  const keyExtractor = (item: YoutubeVideo) => item.id;
+
+  if (loading) {
+    return (
+      <View style={styles.center}>
+        <ActivityIndicator />
+        <Text style={styles.loadingText}>Loading videos…</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Account</Text>
-      {isSignedIn ? (
-        <Text style={styles.subtitle}>Signed in as: {email}</Text>
-      ) : (
-        <Text style={styles.subtitle}>You are not signed in.</Text>
-      )}
-      <View style={styles.buttonContainer}>
-        <Button title={buttonTitle} onPress={onPress} disabled={loading} />
-      </View>
-      {!!error && <Text style={styles.error}>{error}</Text>}
+      {error && <Text style={styles.error}>{error}</Text>}
+      <FlatList
+        data={videos}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        contentContainerStyle={videos.length === 0 ? styles.emptyContainer : undefined}
+        ListEmptyComponent={!loading ? <Text style={styles.empty}>No videos found.</Text> : null}
+      />
     </View>
   );
 }
@@ -111,25 +80,56 @@ export default function AccountScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  center: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: '600',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 14,
-    marginBottom: 16,
-  },
-  buttonContainer: {
-    alignSelf: 'stretch',
+  loadingText: {
+    marginTop: 8,
   },
   error: {
     color: 'red',
-    marginTop: 12,
     textAlign: 'center',
+    padding: 8,
+  },
+  emptyContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  empty: {
+    color: '#666',
+  },
+  card: {
+    flexDirection: 'row',
+    padding: 12,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#ddd',
+    gap: 12,
+  },
+  thumbnail: {
+    width: 120,
+    height: 68,
+    borderRadius: 4,
+    backgroundColor: '#eee',
+  },
+  meta: {
+    flex: 1,
+    gap: 4,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  sub: {
+    fontSize: 12,
+    color: '#666',
+  },
+  date: {
+    fontSize: 12,
+    color: '#999',
   },
 });

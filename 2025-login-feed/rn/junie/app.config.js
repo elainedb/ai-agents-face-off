@@ -51,11 +51,34 @@ function loadAuthorizedEmails() {
   return { list: [], source: 'empty' };
 }
 
+function loadYoutubeApiKey() {
+  // 1) Environment variable (EXPO_PUBLIC_ will be embedded in the app at runtime)
+  const fromEnv = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY || process.env.YOUTUBE_API_KEY;
+  if (fromEnv && typeof fromEnv === 'string') return { key: fromEnv, source: 'env' };
+
+  // 2) Local uncommitted config.js at project root
+  try {
+    const cfgPath = path.resolve(__dirname, 'config.js');
+    if (fs.existsSync(cfgPath)) {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const mod = require(cfgPath);
+      const k = mod?.youtubeApiKey || mod?.default?.youtubeApiKey;
+      if (k) return { key: String(k), source: 'config.js' };
+    }
+  } catch (e) {
+    console.warn('[app.config] Failed to read config.js for youtubeApiKey:', e);
+  }
+
+  // 3) Last resort: undefined
+  return { key: undefined, source: 'empty' };
+}
+
 module.exports = ({ config }) => {
   // If app.json exists, Expo passes it as `config`. Otherwise, start from an empty object
   const base = config ?? {};
 
   const { list: authorizedEmails, source } = loadAuthorizedEmails();
+  const { key: youtubeApiKey, source: ytSource } = loadYoutubeApiKey();
 
   return {
     ...base,
@@ -63,6 +86,8 @@ module.exports = ({ config }) => {
       ...(base.extra || {}),
       authorizedEmails,
       __authorizedEmailsSource: source,
+      youtubeApiKey,
+      __youtubeApiKeySource: ytSource,
     },
   };
 };
