@@ -1,8 +1,8 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-part of 'login_bloc.dart';
+part 'login_event.freezed.dart';
 
 @freezed
-class LoginEvent with _$LoginEvent {
-  const factory LoginEvent.signInWithGoogle() = _SignInWithGoogle;
-const factory LoginEvent.signOut() = _SignOut;
+abstract class LoginEvent with _$LoginEvent {
+  const factory LoginEvent.loginWithGoogle() = _LoginWithGoogle;
 }

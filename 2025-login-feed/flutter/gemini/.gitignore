@@ -54,3 +54,5 @@ assets/authorized_emails.local.txt
 # Firebase
 google-services.json
 **/GoogleService-Info.plist
+lib/core/config/app_config.dart
+assets/api_key_local.txt

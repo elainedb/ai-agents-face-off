@@ -1,8 +1,6 @@
-
+import 'package:flutter_gemini/di.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-
-import 'di.config.dart';
 
 final getIt = GetIt.instance;
 
@@ -11,4 +9,4 @@ final getIt = GetIt.instance;
   preferRelativeImports: true,
   asExtension: false,
 )
-Future<void> configureDependencies() async => $initGetIt(getIt);
+void configureDependencies() => $initGetIt(getIt);

@@ -11,14 +11,23 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
+import 'package:http/http.dart' as _i519;
 import 'package:injectable/injectable.dart' as _i526;
 
+import 'features/login/data/datasources/auth_local_data_source.dart' as _i406;
 import 'features/login/data/datasources/login_remote_data_source.dart' as _i18;
+import 'features/login/data/repositories/auth_repository_impl.dart' as _i606;
 import 'features/login/data/repositories/login_repository_impl.dart' as _i1059;
+import 'features/login/domain/repositories/auth_repository.dart' as _i590;
 import 'features/login/domain/repositories/login_repository.dart' as _i889;
-import 'features/login/domain/usecases/sign_in_with_google.dart' as _i259;
-import 'features/login/domain/usecases/sign_out.dart' as _i278;
+import 'features/login/domain/usecases/is_email_authorized.dart' as _i976;
+import 'features/login/domain/usecases/login_with_google.dart' as _i743;
 import 'features/login/presentation/bloc/login_bloc.dart' as _i1070;
+import 'features/video/data/datasources/video_remote_data_source.dart' as _i577;
+import 'features/video/data/repositories/video_repository_impl.dart' as _i23;
+import 'features/video/domain/repositories/video_repository.dart' as _i454;
+import 'features/video/domain/usecases/get_videos.dart' as _i433;
+import 'features/video/presentation/bloc/video_bloc.dart' as _i589;
 import 'register_module.dart' as _i291;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -30,18 +39,47 @@ _i174.GetIt $initGetIt(
   final gh = _i526.GetItHelper(getIt, environment, environmentFilter);
   final registerModule = _$RegisterModule();
   gh.lazySingleton<_i116.GoogleSignIn>(() => registerModule.googleSignIn);
+  gh.lazySingleton<_i519.Client>(() => registerModule.httpClient);
   gh.lazySingleton<_i18.LoginRemoteDataSource>(
     () => _i18.LoginRemoteDataSourceImpl(gh<_i116.GoogleSignIn>()),
   );
+  gh.lazySingleton<_i406.AuthLocalDataSource>(
+    () => _i406.AuthLocalDataSourceImpl(),
+  );
+  gh.lazySingleton<_i577.VideoRemoteDataSource>(
+    () => _i577.VideoRemoteDataSourceImpl(gh<_i519.Client>()),
+  );
   gh.lazySingleton<_i889.LoginRepository>(
-    () => _i1059.LoginRepositoryImpl(gh<_i18.LoginRemoteDataSource>()),
+    () => _i1059.LoginRepositoryImpl(
+      remoteDataSource: gh<_i18.LoginRemoteDataSource>(),
+    ),
   );
-  gh.factory<_i259.SignInWithGoogle>(
-    () => _i259.SignInWithGoogle(gh<_i889.LoginRepository>()),
+  gh.lazySingleton<_i590.AuthRepository>(
+    () => _i606.AuthRepositoryImpl(
+      localDataSource: gh<_i406.AuthLocalDataSource>(),
+    ),
   );
-  gh.factory<_i278.SignOut>(() => _i278.SignOut(gh<_i889.LoginRepository>()));
+  gh.lazySingleton<_i454.VideoRepository>(
+    () => _i23.VideoRepositoryImpl(
+      remoteDataSource: gh<_i577.VideoRemoteDataSource>(),
+    ),
+  );
+  gh.factory<_i433.GetVideos>(
+    () => _i433.GetVideos(gh<_i454.VideoRepository>()),
+  );
+  gh.factory<_i743.LoginWithGoogle>(
+    () => _i743.LoginWithGoogle(gh<_i889.LoginRepository>()),
+  );
+  gh.factory<_i976.IsEmailAuthorized>(
+    () => _i976.IsEmailAuthorized(gh<_i590.AuthRepository>()),
+  );
+  gh.factory<_i589.VideoBloc>(() => _i589.VideoBloc(gh<_i433.GetVideos>()));
   gh.factory<_i1070.LoginBloc>(
-    () => _i1070.LoginBloc(gh<_i259.SignInWithGoogle>(), gh<_i278.SignOut>()),
+    () => _i1070.LoginBloc(
+      gh<_i743.LoginWithGoogle>(),
+      gh<_i976.IsEmailAuthorized>(),
+      gh<_i116.GoogleSignIn>(),
+    ),
   );
   return getIt;
 }

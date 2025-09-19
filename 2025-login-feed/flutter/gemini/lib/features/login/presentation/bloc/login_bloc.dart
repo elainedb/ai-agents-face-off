@@ -1,33 +1,52 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_gemini/core/usecases/usecase.dart';
+import 'package:flutter_gemini/features/login/domain/usecases/is_email_authorized.dart';
+import 'package:flutter_gemini/features/login/domain/usecases/login_with_google.dart';
+import 'package:flutter_gemini/features/login/presentation/bloc/login_event.dart';
+import 'package:flutter_gemini/features/login/presentation/bloc/login_state.dart';
+import 'package:google_sign_in/google_sign_in.dart'; // Added import
 import 'package:injectable/injectable.dart';
-import 'package:flutter_gemini/features/login/domain/usecases/sign_in_with_google.dart';
-import 'package:flutter_gemini/features/login/domain/usecases/sign_out.dart';
-
-part 'login_event.dart';
-part 'login_state.dart';
-part 'login_bloc.freezed.dart';
 
 @injectable
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final SignInWithGoogle _signInWithGoogle;
-  final SignOut _signOut;
+  final LoginWithGoogle _loginWithGoogle;
+  final IsEmailAuthorized _isEmailAuthorized;
+  final GoogleSignIn _googleSignIn; // Added field
 
-  LoginBloc(this._signInWithGoogle, this._signOut) : super(const _Initial()) {
+  LoginBloc(this._loginWithGoogle, this._isEmailAuthorized, this._googleSignIn) : super(const LoginState.initial()) { // Modified constructor
     on<LoginEvent>((event, emit) async {
       await event.when(
-        signInWithGoogle: () async {
+        loginWithGoogle: () async {
           emit(const LoginState.loading());
-          final result = await _signInWithGoogle();
-          result.fold(
-            (failure) => emit(LoginState.error(failure.message)),
-            (_) => emit(const LoginState.success()),
+          final result = await _loginWithGoogle(NoParams());
+          await result.fold(
+            (failure) async {
+              await _googleSignIn.signOut(); // Added signOut
+              emit(LoginState.error(failure.toString()));
+            },
+            (user) async {
+              if (user != null) {
+                final isAuthorizedResult = await _isEmailAuthorized(user.email);
+                await isAuthorizedResult.fold( // Added await
+                  (failure) async { // Added async
+                    await _googleSignIn.signOut(); // Added signOut
+                    emit(LoginState.error(failure.toString()));
+                  },
+                  (isAuthorized) async { // Added async
+                    if (isAuthorized) {
+                      emit(LoginState.success(user));
+                    } else {
+                      await _googleSignIn.signOut(); // Added signOut
+                      emit(const LoginState.error('Email not authorized.'));
+                    }
+                  },
+                );
+              } else {
+                await _googleSignIn.signOut(); // Added signOut
+                emit(const LoginState.error('Login failed.'));
+              }
+            },
           );
-        },
-        signOut: () async {
-          await _signOut();
-          emit(const LoginState.initial());
         },
       );
     });
