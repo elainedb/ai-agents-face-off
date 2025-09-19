@@ -1,8 +1,7 @@
 package dev.elainedb.android_gemini.domain.youtube
 
-import javax.inject.Inject
 
-class GetYoutubeVideosUseCase @Inject constructor(
+class GetYoutubeVideosUseCase(
     private val youtubeRepository: YoutubeRepository
 ) {
     suspend operator fun invoke(): List<YoutubeVideo> {

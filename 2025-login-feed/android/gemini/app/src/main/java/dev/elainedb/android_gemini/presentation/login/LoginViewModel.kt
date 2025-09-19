@@ -3,16 +3,13 @@ package dev.elainedb.android_gemini.presentation.login
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.elainedb.android_gemini.domain.GoogleAuthRepository
 import dev.elainedb.android_gemini.domain.IsEmailAuthorizedUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class LoginViewModel @Inject constructor(
+class LoginViewModel(
     private val isEmailAuthorizedUseCase: IsEmailAuthorizedUseCase,
     private val googleAuthRepository: GoogleAuthRepository
 ) : ViewModel() {

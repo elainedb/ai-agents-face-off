@@ -1,14 +1,12 @@
 package dev.elainedb.android_gemini.data
 
 import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.elainedb.android_gemini.R
 import dev.elainedb.android_gemini.domain.AuthorizedEmailsRepository
 import java.util.Properties
-import javax.inject.Inject
 
-class AuthorizedEmailsRepositoryImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+class AuthorizedEmailsRepositoryImpl(
+    private val context: Context
 ) : AuthorizedEmailsRepository {
 
     private val authorizedEmails by lazy {

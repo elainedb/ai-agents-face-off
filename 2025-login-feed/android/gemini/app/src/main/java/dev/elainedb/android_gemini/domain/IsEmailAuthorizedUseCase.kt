@@ -1,8 +1,7 @@
 package dev.elainedb.android_gemini.domain
 
-import javax.inject.Inject
 
-class IsEmailAuthorizedUseCase @Inject constructor(
+class IsEmailAuthorizedUseCase(
     private val repository: AuthorizedEmailsRepository
 ) {
     suspend operator fun invoke(email: String): Boolean {
