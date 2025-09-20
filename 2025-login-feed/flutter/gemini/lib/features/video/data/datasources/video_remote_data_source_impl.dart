@@ -108,9 +108,9 @@ class VideoRemoteDataSourceImpl implements VideoRemoteDataSource {
       }).toList();
 
       return await Future.wait(geocodingFutures);
-    } on DioException catch (e) {
+    } on DioException {
       throw ServerException();
-    } catch (e) {
+    } catch (_) {
       throw ServerException();
     }
   }
