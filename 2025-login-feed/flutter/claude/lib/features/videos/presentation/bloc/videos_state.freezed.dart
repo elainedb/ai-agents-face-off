@@ -21,21 +21,48 @@ mixin _$VideosState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Video> videos) loaded,
+    required TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )
+    loaded,
     required TResult Function(String message) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Video> videos)? loaded,
+    TResult? Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult? Function(String message)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Video> videos)? loaded,
+    TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -130,7 +157,16 @@ class _$VideosInitialImpl implements VideosInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Video> videos) loaded,
+    required TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )
+    loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -141,7 +177,16 @@ class _$VideosInitialImpl implements VideosInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Video> videos)? loaded,
+    TResult? Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -152,7 +197,16 @@ class _$VideosInitialImpl implements VideosInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Video> videos)? loaded,
+    TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +303,16 @@ class _$VideosLoadingImpl implements VideosLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Video> videos) loaded,
+    required TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )
+    loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -260,7 +323,16 @@ class _$VideosLoadingImpl implements VideosLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Video> videos)? loaded,
+    TResult? Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -271,7 +343,16 @@ class _$VideosLoadingImpl implements VideosLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Video> videos)? loaded,
+    TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -330,7 +411,15 @@ abstract class _$$VideosLoadedImplCopyWith<$Res> {
     $Res Function(_$VideosLoadedImpl) then,
   ) = __$$VideosLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Video> videos});
+  $Res call({
+    List<Video> videos,
+    List<Video> filteredVideos,
+    String? selectedChannel,
+    String? selectedCountry,
+    SortBy sortBy,
+    SortOrder sortOrder,
+    bool isRefreshing,
+  });
 }
 
 /// @nodoc
@@ -346,13 +435,45 @@ class __$$VideosLoadedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? videos = null}) {
+  $Res call({
+    Object? videos = null,
+    Object? filteredVideos = null,
+    Object? selectedChannel = freezed,
+    Object? selectedCountry = freezed,
+    Object? sortBy = null,
+    Object? sortOrder = null,
+    Object? isRefreshing = null,
+  }) {
     return _then(
       _$VideosLoadedImpl(
-        null == videos
+        videos: null == videos
             ? _value._videos
             : videos // ignore: cast_nullable_to_non_nullable
                   as List<Video>,
+        filteredVideos: null == filteredVideos
+            ? _value._filteredVideos
+            : filteredVideos // ignore: cast_nullable_to_non_nullable
+                  as List<Video>,
+        selectedChannel: freezed == selectedChannel
+            ? _value.selectedChannel
+            : selectedChannel // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        selectedCountry: freezed == selectedCountry
+            ? _value.selectedCountry
+            : selectedCountry // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        sortBy: null == sortBy
+            ? _value.sortBy
+            : sortBy // ignore: cast_nullable_to_non_nullable
+                  as SortBy,
+        sortOrder: null == sortOrder
+            ? _value.sortOrder
+            : sortOrder // ignore: cast_nullable_to_non_nullable
+                  as SortOrder,
+        isRefreshing: null == isRefreshing
+            ? _value.isRefreshing
+            : isRefreshing // ignore: cast_nullable_to_non_nullable
+                  as bool,
       ),
     );
   }
@@ -361,7 +482,16 @@ class __$$VideosLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$VideosLoadedImpl implements VideosLoaded {
-  const _$VideosLoadedImpl(final List<Video> videos) : _videos = videos;
+  const _$VideosLoadedImpl({
+    required final List<Video> videos,
+    required final List<Video> filteredVideos,
+    this.selectedChannel,
+    this.selectedCountry,
+    this.sortBy = SortBy.publishedDate,
+    this.sortOrder = SortOrder.descending,
+    this.isRefreshing = false,
+  }) : _videos = videos,
+       _filteredVideos = filteredVideos;
 
   final List<Video> _videos;
   @override
@@ -371,9 +501,31 @@ class _$VideosLoadedImpl implements VideosLoaded {
     return EqualUnmodifiableListView(_videos);
   }
 
+  final List<Video> _filteredVideos;
+  @override
+  List<Video> get filteredVideos {
+    if (_filteredVideos is EqualUnmodifiableListView) return _filteredVideos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredVideos);
+  }
+
+  @override
+  final String? selectedChannel;
+  @override
+  final String? selectedCountry;
+  @override
+  @JsonKey()
+  final SortBy sortBy;
+  @override
+  @JsonKey()
+  final SortOrder sortOrder;
+  @override
+  @JsonKey()
+  final bool isRefreshing;
+
   @override
   String toString() {
-    return 'VideosState.loaded(videos: $videos)';
+    return 'VideosState.loaded(videos: $videos, filteredVideos: $filteredVideos, selectedChannel: $selectedChannel, selectedCountry: $selectedCountry, sortBy: $sortBy, sortOrder: $sortOrder, isRefreshing: $isRefreshing)';
   }
 
   @override
@@ -381,12 +533,33 @@ class _$VideosLoadedImpl implements VideosLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VideosLoadedImpl &&
-            const DeepCollectionEquality().equals(other._videos, _videos));
+            const DeepCollectionEquality().equals(other._videos, _videos) &&
+            const DeepCollectionEquality().equals(
+              other._filteredVideos,
+              _filteredVideos,
+            ) &&
+            (identical(other.selectedChannel, selectedChannel) ||
+                other.selectedChannel == selectedChannel) &&
+            (identical(other.selectedCountry, selectedCountry) ||
+                other.selectedCountry == selectedCountry) &&
+            (identical(other.sortBy, sortBy) || other.sortBy == sortBy) &&
+            (identical(other.sortOrder, sortOrder) ||
+                other.sortOrder == sortOrder) &&
+            (identical(other.isRefreshing, isRefreshing) ||
+                other.isRefreshing == isRefreshing));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_videos));
+  int get hashCode => Object.hash(
+    runtimeType,
+    const DeepCollectionEquality().hash(_videos),
+    const DeepCollectionEquality().hash(_filteredVideos),
+    selectedChannel,
+    selectedCountry,
+    sortBy,
+    sortOrder,
+    isRefreshing,
+  );
 
   /// Create a copy of VideosState
   /// with the given fields replaced by the non-null parameter values.
@@ -401,10 +574,27 @@ class _$VideosLoadedImpl implements VideosLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Video> videos) loaded,
+    required TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )
+    loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(videos);
+    return loaded(
+      videos,
+      filteredVideos,
+      selectedChannel,
+      selectedCountry,
+      sortBy,
+      sortOrder,
+      isRefreshing,
+    );
   }
 
   @override
@@ -412,10 +602,27 @@ class _$VideosLoadedImpl implements VideosLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Video> videos)? loaded,
+    TResult? Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(videos);
+    return loaded?.call(
+      videos,
+      filteredVideos,
+      selectedChannel,
+      selectedCountry,
+      sortBy,
+      sortOrder,
+      isRefreshing,
+    );
   }
 
   @override
@@ -423,12 +630,29 @@ class _$VideosLoadedImpl implements VideosLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Video> videos)? loaded,
+    TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(videos);
+      return loaded(
+        videos,
+        filteredVideos,
+        selectedChannel,
+        selectedCountry,
+        sortBy,
+        sortOrder,
+        isRefreshing,
+      );
     }
     return orElse();
   }
@@ -472,9 +696,23 @@ class _$VideosLoadedImpl implements VideosLoaded {
 }
 
 abstract class VideosLoaded implements VideosState {
-  const factory VideosLoaded(final List<Video> videos) = _$VideosLoadedImpl;
+  const factory VideosLoaded({
+    required final List<Video> videos,
+    required final List<Video> filteredVideos,
+    final String? selectedChannel,
+    final String? selectedCountry,
+    final SortBy sortBy,
+    final SortOrder sortOrder,
+    final bool isRefreshing,
+  }) = _$VideosLoadedImpl;
 
   List<Video> get videos;
+  List<Video> get filteredVideos;
+  String? get selectedChannel;
+  String? get selectedCountry;
+  SortBy get sortBy;
+  SortOrder get sortOrder;
+  bool get isRefreshing;
 
   /// Create a copy of VideosState
   /// with the given fields replaced by the non-null parameter values.
@@ -555,7 +793,16 @@ class _$VideosErrorImpl implements VideosError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Video> videos) loaded,
+    required TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )
+    loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -566,7 +813,16 @@ class _$VideosErrorImpl implements VideosError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<Video> videos)? loaded,
+    TResult? Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -577,7 +833,16 @@ class _$VideosErrorImpl implements VideosError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Video> videos)? loaded,
+    TResult Function(
+      List<Video> videos,
+      List<Video> filteredVideos,
+      String? selectedChannel,
+      String? selectedCountry,
+      SortBy sortBy,
+      SortOrder sortOrder,
+      bool isRefreshing,
+    )?
+    loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

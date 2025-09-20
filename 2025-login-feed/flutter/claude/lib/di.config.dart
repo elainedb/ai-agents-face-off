@@ -25,6 +25,8 @@ import 'package:flutter_claude/features/authentication/domain/usecases/sign_out.
     as _i987;
 import 'package:flutter_claude/features/authentication/presentation/bloc/auth_bloc.dart'
     as _i810;
+import 'package:flutter_claude/features/videos/data/datasources/videos_local_datasource.dart'
+    as _i415;
 import 'package:flutter_claude/features/videos/data/datasources/videos_remote_datasource.dart'
     as _i529;
 import 'package:flutter_claude/features/videos/data/repositories/videos_repository_impl.dart'
@@ -33,6 +35,10 @@ import 'package:flutter_claude/features/videos/domain/repositories/videos_reposi
     as _i274;
 import 'package:flutter_claude/features/videos/domain/usecases/get_videos.dart'
     as _i585;
+import 'package:flutter_claude/features/videos/domain/usecases/get_videos_by_channel.dart'
+    as _i383;
+import 'package:flutter_claude/features/videos/domain/usecases/get_videos_by_country.dart'
+    as _i4;
 import 'package:flutter_claude/features/videos/presentation/bloc/videos_bloc.dart'
     as _i354;
 import 'package:get_it/get_it.dart' as _i174;
@@ -51,6 +57,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i59.FirebaseAuth>(() => registerModule.firebaseAuth);
     gh.singleton<_i116.GoogleSignIn>(() => registerModule.googleSignIn);
     gh.singleton<_i519.Client>(() => registerModule.httpClient);
+    gh.lazySingleton<_i415.VideosLocalDataSource>(
+      () => _i415.VideosLocalDataSourceImpl(),
+    );
     gh.lazySingleton<_i1020.AuthRemoteDataSource>(
       () => _i1020.AuthRemoteDataSourceImpl(
         gh<_i59.FirebaseAuth>(),
@@ -60,16 +69,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i529.VideosRemoteDataSource>(
       () => _i529.VideosRemoteDataSourceImpl(client: gh<_i519.Client>()),
     );
-    gh.lazySingleton<_i246.AuthRepository>(
-      () => _i547.AuthRepositoryImpl(gh<_i1020.AuthRemoteDataSource>()),
-    );
     gh.lazySingleton<_i274.VideosRepository>(
       () => _i845.VideosRepositoryImpl(
         remoteDataSource: gh<_i529.VideosRemoteDataSource>(),
+        localDataSource: gh<_i415.VideosLocalDataSource>(),
       ),
+    );
+    gh.lazySingleton<_i246.AuthRepository>(
+      () => _i547.AuthRepositoryImpl(gh<_i1020.AuthRemoteDataSource>()),
+    );
+    gh.factory<_i4.GetVideosByCountry>(
+      () => _i4.GetVideosByCountry(gh<_i274.VideosRepository>()),
     );
     gh.factory<_i585.GetVideos>(
       () => _i585.GetVideos(gh<_i274.VideosRepository>()),
+    );
+    gh.factory<_i383.GetVideosByChannel>(
+      () => _i383.GetVideosByChannel(gh<_i274.VideosRepository>()),
     );
     gh.factory<_i987.SignOut>(() => _i987.SignOut(gh<_i246.AuthRepository>()));
     gh.factory<_i178.SignInWithGoogle>(

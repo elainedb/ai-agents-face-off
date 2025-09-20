@@ -26,6 +26,12 @@ mixin _$VideoModel {
   String get channelTitle => throw _privateConstructorUsedError;
   String get thumbnailUrl => throw _privateConstructorUsedError;
   String get publishedAt => throw _privateConstructorUsedError;
+  List<String> get tags => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
+  String? get recordingDate => throw _privateConstructorUsedError;
 
   /// Serializes this VideoModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,6 +56,12 @@ abstract class $VideoModelCopyWith<$Res> {
     String channelTitle,
     String thumbnailUrl,
     String publishedAt,
+    List<String> tags,
+    String? city,
+    String? country,
+    double? latitude,
+    double? longitude,
+    String? recordingDate,
   });
 }
 
@@ -73,6 +85,12 @@ class _$VideoModelCopyWithImpl<$Res, $Val extends VideoModel>
     Object? channelTitle = null,
     Object? thumbnailUrl = null,
     Object? publishedAt = null,
+    Object? tags = null,
+    Object? city = freezed,
+    Object? country = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? recordingDate = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -96,6 +114,30 @@ class _$VideoModelCopyWithImpl<$Res, $Val extends VideoModel>
                 ? _value.publishedAt
                 : publishedAt // ignore: cast_nullable_to_non_nullable
                       as String,
+            tags: null == tags
+                ? _value.tags
+                : tags // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            city: freezed == city
+                ? _value.city
+                : city // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            country: freezed == country
+                ? _value.country
+                : country // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            latitude: freezed == latitude
+                ? _value.latitude
+                : latitude // ignore: cast_nullable_to_non_nullable
+                      as double?,
+            longitude: freezed == longitude
+                ? _value.longitude
+                : longitude // ignore: cast_nullable_to_non_nullable
+                      as double?,
+            recordingDate: freezed == recordingDate
+                ? _value.recordingDate
+                : recordingDate // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
@@ -117,6 +159,12 @@ abstract class _$$VideoModelImplCopyWith<$Res>
     String channelTitle,
     String thumbnailUrl,
     String publishedAt,
+    List<String> tags,
+    String? city,
+    String? country,
+    double? latitude,
+    double? longitude,
+    String? recordingDate,
   });
 }
 
@@ -139,6 +187,12 @@ class __$$VideoModelImplCopyWithImpl<$Res>
     Object? channelTitle = null,
     Object? thumbnailUrl = null,
     Object? publishedAt = null,
+    Object? tags = null,
+    Object? city = freezed,
+    Object? country = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? recordingDate = freezed,
   }) {
     return _then(
       _$VideoModelImpl(
@@ -162,6 +216,30 @@ class __$$VideoModelImplCopyWithImpl<$Res>
             ? _value.publishedAt
             : publishedAt // ignore: cast_nullable_to_non_nullable
                   as String,
+        tags: null == tags
+            ? _value._tags
+            : tags // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        city: freezed == city
+            ? _value.city
+            : city // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        country: freezed == country
+            ? _value.country
+            : country // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        latitude: freezed == latitude
+            ? _value.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        longitude: freezed == longitude
+            ? _value.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        recordingDate: freezed == recordingDate
+            ? _value.recordingDate
+            : recordingDate // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
   }
@@ -176,7 +254,14 @@ class _$VideoModelImpl extends _VideoModel {
     required this.channelTitle,
     required this.thumbnailUrl,
     required this.publishedAt,
-  }) : super._();
+    final List<String> tags = const [],
+    this.city,
+    this.country,
+    this.latitude,
+    this.longitude,
+    this.recordingDate,
+  }) : _tags = tags,
+       super._();
 
   factory _$VideoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$VideoModelImplFromJson(json);
@@ -191,10 +276,29 @@ class _$VideoModelImpl extends _VideoModel {
   final String thumbnailUrl;
   @override
   final String publishedAt;
+  final List<String> _tags;
+  @override
+  @JsonKey()
+  List<String> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
+  @override
+  final String? city;
+  @override
+  final String? country;
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
+  @override
+  final String? recordingDate;
 
   @override
   String toString() {
-    return 'VideoModel(id: $id, title: $title, channelTitle: $channelTitle, thumbnailUrl: $thumbnailUrl, publishedAt: $publishedAt)';
+    return 'VideoModel(id: $id, title: $title, channelTitle: $channelTitle, thumbnailUrl: $thumbnailUrl, publishedAt: $publishedAt, tags: $tags, city: $city, country: $country, latitude: $latitude, longitude: $longitude, recordingDate: $recordingDate)';
   }
 
   @override
@@ -209,7 +313,16 @@ class _$VideoModelImpl extends _VideoModel {
             (identical(other.thumbnailUrl, thumbnailUrl) ||
                 other.thumbnailUrl == thumbnailUrl) &&
             (identical(other.publishedAt, publishedAt) ||
-                other.publishedAt == publishedAt));
+                other.publishedAt == publishedAt) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.recordingDate, recordingDate) ||
+                other.recordingDate == recordingDate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -221,6 +334,12 @@ class _$VideoModelImpl extends _VideoModel {
     channelTitle,
     thumbnailUrl,
     publishedAt,
+    const DeepCollectionEquality().hash(_tags),
+    city,
+    country,
+    latitude,
+    longitude,
+    recordingDate,
   );
 
   /// Create a copy of VideoModel
@@ -244,6 +363,12 @@ abstract class _VideoModel extends VideoModel {
     required final String channelTitle,
     required final String thumbnailUrl,
     required final String publishedAt,
+    final List<String> tags,
+    final String? city,
+    final String? country,
+    final double? latitude,
+    final double? longitude,
+    final String? recordingDate,
   }) = _$VideoModelImpl;
   const _VideoModel._() : super._();
 
@@ -260,6 +385,18 @@ abstract class _VideoModel extends VideoModel {
   String get thumbnailUrl;
   @override
   String get publishedAt;
+  @override
+  List<String> get tags;
+  @override
+  String? get city;
+  @override
+  String? get country;
+  @override
+  double? get latitude;
+  @override
+  double? get longitude;
+  @override
+  String? get recordingDate;
 
   /// Create a copy of VideoModel
   /// with the given fields replaced by the non-null parameter values.

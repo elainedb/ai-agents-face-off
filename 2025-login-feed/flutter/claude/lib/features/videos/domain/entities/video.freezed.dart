@@ -22,6 +22,12 @@ mixin _$Video {
   String get channelName => throw _privateConstructorUsedError;
   String get thumbnailUrl => throw _privateConstructorUsedError;
   DateTime get publishedAt => throw _privateConstructorUsedError;
+  List<String> get tags => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
+  DateTime? get recordingDate => throw _privateConstructorUsedError;
 
   /// Create a copy of Video
   /// with the given fields replaced by the non-null parameter values.
@@ -40,6 +46,12 @@ abstract class $VideoCopyWith<$Res> {
     String channelName,
     String thumbnailUrl,
     DateTime publishedAt,
+    List<String> tags,
+    String? city,
+    String? country,
+    double? latitude,
+    double? longitude,
+    DateTime? recordingDate,
   });
 }
 
@@ -63,6 +75,12 @@ class _$VideoCopyWithImpl<$Res, $Val extends Video>
     Object? channelName = null,
     Object? thumbnailUrl = null,
     Object? publishedAt = null,
+    Object? tags = null,
+    Object? city = freezed,
+    Object? country = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? recordingDate = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -86,6 +104,30 @@ class _$VideoCopyWithImpl<$Res, $Val extends Video>
                 ? _value.publishedAt
                 : publishedAt // ignore: cast_nullable_to_non_nullable
                       as DateTime,
+            tags: null == tags
+                ? _value.tags
+                : tags // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            city: freezed == city
+                ? _value.city
+                : city // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            country: freezed == country
+                ? _value.country
+                : country // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            latitude: freezed == latitude
+                ? _value.latitude
+                : latitude // ignore: cast_nullable_to_non_nullable
+                      as double?,
+            longitude: freezed == longitude
+                ? _value.longitude
+                : longitude // ignore: cast_nullable_to_non_nullable
+                      as double?,
+            recordingDate: freezed == recordingDate
+                ? _value.recordingDate
+                : recordingDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
           )
           as $Val,
     );
@@ -106,6 +148,12 @@ abstract class _$$VideoImplCopyWith<$Res> implements $VideoCopyWith<$Res> {
     String channelName,
     String thumbnailUrl,
     DateTime publishedAt,
+    List<String> tags,
+    String? city,
+    String? country,
+    double? latitude,
+    double? longitude,
+    DateTime? recordingDate,
   });
 }
 
@@ -128,6 +176,12 @@ class __$$VideoImplCopyWithImpl<$Res>
     Object? channelName = null,
     Object? thumbnailUrl = null,
     Object? publishedAt = null,
+    Object? tags = null,
+    Object? city = freezed,
+    Object? country = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? recordingDate = freezed,
   }) {
     return _then(
       _$VideoImpl(
@@ -151,6 +205,30 @@ class __$$VideoImplCopyWithImpl<$Res>
             ? _value.publishedAt
             : publishedAt // ignore: cast_nullable_to_non_nullable
                   as DateTime,
+        tags: null == tags
+            ? _value._tags
+            : tags // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        city: freezed == city
+            ? _value.city
+            : city // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        country: freezed == country
+            ? _value.country
+            : country // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        latitude: freezed == latitude
+            ? _value.latitude
+            : latitude // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        longitude: freezed == longitude
+            ? _value.longitude
+            : longitude // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        recordingDate: freezed == recordingDate
+            ? _value.recordingDate
+            : recordingDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
       ),
     );
   }
@@ -158,14 +236,21 @@ class __$$VideoImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$VideoImpl implements _Video {
+class _$VideoImpl extends _Video {
   const _$VideoImpl({
     required this.id,
     required this.title,
     required this.channelName,
     required this.thumbnailUrl,
     required this.publishedAt,
-  });
+    final List<String> tags = const [],
+    this.city,
+    this.country,
+    this.latitude,
+    this.longitude,
+    this.recordingDate,
+  }) : _tags = tags,
+       super._();
 
   @override
   final String id;
@@ -177,10 +262,29 @@ class _$VideoImpl implements _Video {
   final String thumbnailUrl;
   @override
   final DateTime publishedAt;
+  final List<String> _tags;
+  @override
+  @JsonKey()
+  List<String> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tags);
+  }
+
+  @override
+  final String? city;
+  @override
+  final String? country;
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
+  @override
+  final DateTime? recordingDate;
 
   @override
   String toString() {
-    return 'Video(id: $id, title: $title, channelName: $channelName, thumbnailUrl: $thumbnailUrl, publishedAt: $publishedAt)';
+    return 'Video(id: $id, title: $title, channelName: $channelName, thumbnailUrl: $thumbnailUrl, publishedAt: $publishedAt, tags: $tags, city: $city, country: $country, latitude: $latitude, longitude: $longitude, recordingDate: $recordingDate)';
   }
 
   @override
@@ -195,7 +299,16 @@ class _$VideoImpl implements _Video {
             (identical(other.thumbnailUrl, thumbnailUrl) ||
                 other.thumbnailUrl == thumbnailUrl) &&
             (identical(other.publishedAt, publishedAt) ||
-                other.publishedAt == publishedAt));
+                other.publishedAt == publishedAt) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.recordingDate, recordingDate) ||
+                other.recordingDate == recordingDate));
   }
 
   @override
@@ -206,6 +319,12 @@ class _$VideoImpl implements _Video {
     channelName,
     thumbnailUrl,
     publishedAt,
+    const DeepCollectionEquality().hash(_tags),
+    city,
+    country,
+    latitude,
+    longitude,
+    recordingDate,
   );
 
   /// Create a copy of Video
@@ -217,14 +336,21 @@ class _$VideoImpl implements _Video {
       __$$VideoImplCopyWithImpl<_$VideoImpl>(this, _$identity);
 }
 
-abstract class _Video implements Video {
+abstract class _Video extends Video {
   const factory _Video({
     required final String id,
     required final String title,
     required final String channelName,
     required final String thumbnailUrl,
     required final DateTime publishedAt,
+    final List<String> tags,
+    final String? city,
+    final String? country,
+    final double? latitude,
+    final double? longitude,
+    final DateTime? recordingDate,
   }) = _$VideoImpl;
+  const _Video._() : super._();
 
   @override
   String get id;
@@ -236,6 +362,18 @@ abstract class _Video implements Video {
   String get thumbnailUrl;
   @override
   DateTime get publishedAt;
+  @override
+  List<String> get tags;
+  @override
+  String? get city;
+  @override
+  String? get country;
+  @override
+  double? get latitude;
+  @override
+  double? get longitude;
+  @override
+  DateTime? get recordingDate;
 
   /// Create a copy of Video
   /// with the given fields replaced by the non-null parameter values.
