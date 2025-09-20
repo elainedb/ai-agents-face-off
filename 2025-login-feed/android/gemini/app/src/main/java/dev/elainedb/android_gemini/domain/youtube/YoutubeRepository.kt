@@ -1,5 +1,6 @@
 package dev.elainedb.android_gemini.domain.youtube
 
+import dev.elainedb.android_gemini.data.database.YoutubeVideoWithTagsAndLocation
 import kotlinx.serialization.Serializable
 
 data class YoutubeVideo(
@@ -23,4 +24,5 @@ data class Location(
 
 interface YoutubeRepository {
     suspend fun getVideos(channelIds: List<String>): List<YoutubeVideo>
+    suspend fun getVideosWithLocation(): List<YoutubeVideoWithTagsAndLocation>
 }

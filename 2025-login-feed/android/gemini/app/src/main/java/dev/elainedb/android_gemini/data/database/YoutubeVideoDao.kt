@@ -20,4 +20,8 @@ interface YoutubeVideoDao {
     @Transaction
     @Query("SELECT * FROM videos")
     suspend fun getVideosWithTagsAndLocation(): List<YoutubeVideoWithTagsAndLocation>
+
+    @Transaction
+    @Query("SELECT * FROM videos WHERE videoId IN (SELECT videoId FROM locations)")
+    suspend fun getVideosWithLocation(): List<YoutubeVideoWithTagsAndLocation>
 }

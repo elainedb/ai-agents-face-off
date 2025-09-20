@@ -22,7 +22,8 @@ import dev.elainedb.android_gemini.presentation.main.SortOrder
 @Composable
 fun MainScreen(
     mainViewModel: MainViewModel = koinViewModel(),
-    onLogout: () -> Unit
+    onLogout: () -> Unit,
+    onNavigateToMap: () -> Unit
 ) {
     val uiState by mainViewModel.uiState.collectAsState()
     val context = LocalContext.current
@@ -60,6 +61,9 @@ fun MainScreen(
                     }
                     Button(onClick = { showSortDialog = true }) {
                         Text("Sort")
+                    }
+                    Button(onClick = onNavigateToMap) {
+                        Text("View Map")
                     }
                 }
             }

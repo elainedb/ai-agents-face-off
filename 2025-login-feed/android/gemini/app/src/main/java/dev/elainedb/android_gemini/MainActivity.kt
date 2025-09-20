@@ -42,15 +42,27 @@ fun AppNavigation() {
             })
         }
         composable("home") {
-            MainScreen(onLogout = {
-                loginViewModel.signOut {
-                    navController.navigate("login") {
-                        popUpTo("home") {
-                            inclusive = true
+            MainScreen(
+                onLogout = {
+                    loginViewModel.signOut {
+                        navController.navigate("login") {
+                            popUpTo("home") {
+                                inclusive = true
+                            }
                         }
                     }
+                },
+                onNavigateToMap = {
+                    navController.navigate("map")
                 }
-            })
+            )
+        }
+        composable("map") {
+            dev.elainedb.android_gemini.presentation.map.MapScreen(
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

@@ -21,7 +21,9 @@ val appModule = module {
     single<YoutubeRepository> { YoutubeRepositoryImpl(get(), get(named("youtubeApiKey")), get(), androidContext()) }
     single { IsEmailAuthorizedUseCase(get()) }
     single { GetYoutubeVideosUseCase(get()) }
+    single { dev.elainedb.android_gemini.domain.usecase.GetVideosWithLocationUseCase(get()) }
 
     viewModel { LoginViewModel(get(), get()) }
     viewModel { MainViewModel(get()) }
+    viewModel { dev.elainedb.android_gemini.presentation.map.MapViewModel(get()) }
 }

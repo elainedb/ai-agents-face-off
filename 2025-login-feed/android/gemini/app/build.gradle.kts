@@ -94,6 +94,10 @@ dependencies {
     // ViewModel and Navigation
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.navigation.compose)
+    implementation(libs.androidx.preference)
+
+    // OSMDroid for map display
+    implementation(libs.osmdroid)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

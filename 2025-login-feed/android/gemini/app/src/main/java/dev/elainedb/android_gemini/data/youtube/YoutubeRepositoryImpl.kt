@@ -130,4 +130,8 @@ class YoutubeRepositoryImpl(
 
         videos.sortedByDescending { it.publishedAt }
     }
+
+    override suspend fun getVideosWithLocation(): List<dev.elainedb.android_gemini.data.database.YoutubeVideoWithTagsAndLocation> {
+        return youtubeVideoDao.getVideosWithLocation()
+    }
 }
