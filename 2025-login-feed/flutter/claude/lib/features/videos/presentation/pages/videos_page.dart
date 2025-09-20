@@ -13,6 +13,7 @@ import '../../domain/entities/video.dart';
 import '../bloc/videos_bloc.dart';
 import '../bloc/videos_event.dart';
 import '../bloc/videos_state.dart';
+import 'map_screen.dart';
 
 class VideosPage extends StatelessWidget {
   final User user;
@@ -48,6 +49,22 @@ class _VideosViewState extends State<VideosView> {
         title: const Text('YouTube Videos'),
         automaticallyImplyLeading: false,
         actions: [
+          IconButton(
+            onPressed: () {
+              final videosBloc = context.read<VideosBloc>();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BlocProvider.value(
+                    value: videosBloc,
+                    child: const MapScreen(),
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(Icons.map),
+            tooltip: 'View Map',
+          ),
           BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               return PopupMenuButton<String>(
