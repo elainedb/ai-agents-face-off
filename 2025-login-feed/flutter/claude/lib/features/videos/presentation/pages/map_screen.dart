@@ -31,46 +31,28 @@ class _MapScreenState extends State<MapScreen> {
       body: BlocBuilder<VideosBloc, VideosState>(
         builder: (context, state) {
           return state.when(
-            initial: () {
-              print('MapScreen: VideosBloc state is initial');
-              return const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(),
-                    SizedBox(height: 16),
-                    Text('Loading map...'),
-                  ],
-                ),
-              );
-            },
-            loading: () {
-              print('MapScreen: VideosBloc state is loading');
-              return const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(),
-                    SizedBox(height: 16),
-                    Text('Loading videos...'),
-                  ],
-                ),
-              );
-            },
+            initial: () => const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 16),
+                  Text('Loading map...'),
+                ],
+              ),
+            ),
+            loading: () => const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 16),
+                  Text('Loading videos...'),
+                ],
+              ),
+            ),
             loaded: (videos, filteredVideos, selectedChannel, selectedCountry, sortBy, sortOrder, isRefreshing) {
               final videosWithLocation = videos.where((video) => video.hasCoordinates).toList();
-
-              // Debug information
-              print('MapScreen Debug:');
-              print('Total videos: ${videos.length}');
-              print('Videos with coordinates: ${videosWithLocation.length}');
-              for (int i = 0; i < videos.length && i < 3; i++) {
-                final video = videos[i];
-                print('Video $i: ${video.title}');
-                print('  - lat: ${video.latitude}, lng: ${video.longitude}');
-                print('  - hasCoordinates: ${video.hasCoordinates}');
-                print('  - city: ${video.city}, country: ${video.country}');
-              }
 
               if (videosWithLocation.isEmpty) {
                 return Center(
