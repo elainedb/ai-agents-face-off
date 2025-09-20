@@ -5,10 +5,9 @@ import 'package:flutter_gemini/di.dart';
 import 'package:flutter_gemini/features/map/presentation/bloc/map_bloc.dart';
 import 'package:flutter_gemini/features/map/presentation/widgets/video_bottom_sheet.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
 
 class MapScreen extends StatelessWidget {
-  const MapScreen({Key? key}) : super(key: key);
+  const MapScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

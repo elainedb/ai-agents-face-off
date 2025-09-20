@@ -3,7 +3,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_gemini/core/errors/failures.dart';
 import 'package:flutter_gemini/features/map/domain/entities/video_location.dart';
 import 'package:flutter_gemini/features/map/domain/repositories/map_repository.dart';
-import 'package:flutter_gemini/features/video/domain/entities/video.dart';
 import 'package:flutter_gemini/features/video/domain/repositories/video_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';

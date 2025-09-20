@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class VideoBottomSheet extends StatelessWidget {
   final VideoLocation location;
-  const VideoBottomSheet({Key? key, required this.location}) : super(key: key);
+  const VideoBottomSheet({super.key, required this.location});
 
   @override
   Widget build(BuildContext context) {
