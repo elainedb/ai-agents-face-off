@@ -62,3 +62,9 @@ jest.mock('react-native-gesture-handler', () => {
     GestureHandlerRootView: View,
   };
 });
+
+// Mock react-native-webview for tests
+jest.mock('react-native-webview', () => ({
+  __esModule: true,
+  default: 'WebView',
+}));

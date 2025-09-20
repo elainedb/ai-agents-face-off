@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, ActivityIndicator, Linking, RefreshControl, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import { fetchCombinedChannelVideosCached, formatDateYYYYMMDD, YoutubeVideo } from '../utils/youtube';
 
 const CHANNEL_IDS = [
@@ -15,6 +16,7 @@ type SortField = 'publishedAt' | 'recordingDate';
 type SortOrder = 'asc' | 'desc';
 
 export default function MainScreen() {
+  const router = useRouter();
   const [videos, setVideos] = useState<YoutubeVideo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -126,6 +128,7 @@ export default function MainScreen() {
 
       {/* Controls */}
       <View style={styles.controls}>
+        <Button title="View Map" onPress={() => router.push('/map')} />
         <Button title="Refresh" onPress={() => load(true)} />
         <Button title="Filter" onPress={() => setShowFilter((v) => !v)} />
         <Button title="Sort" onPress={() => setShowSort((v) => !v)} />
