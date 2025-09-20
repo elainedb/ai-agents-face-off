@@ -52,7 +52,6 @@ class VideoLocalDataSourceImpl implements VideoLocalDataSource {
   @override
   Future<void> clearVideos() async {
     try {
-      print('--- VideoLocalDataSource: Clearing all videos from the database.');
       await database.delete('videos');
     } catch (e) {
       throw CacheException();

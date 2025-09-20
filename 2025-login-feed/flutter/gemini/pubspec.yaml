@@ -52,6 +52,8 @@ dependencies:
   url_launcher: ^6.0.12
   intl: ^0.17.0
   geocoding: ^2.1.0
+  bloc: ^8.1.4
+  path: ^1.9.1
 
 dev_dependencies:
   flutter_test:

@@ -17,19 +17,15 @@ class VideoRepositoryImpl implements VideoRepository {
   @override
   Future<Either<Failure, List<Video>>> getVideos(
       {bool forceRefresh = false}) async {
-    print('--- VideoRepository: getVideos called with forceRefresh: $forceRefresh');
     try {
       if (!forceRefresh) {
         final localVideos = await localDataSource.getVideos();
         if (localVideos.isNotEmpty) {
-          print('--- VideoRepository: Returning data from cache.');
           return Right(localVideos);
         }
       } else {
-        print('--- VideoRepository: Clearing cache due to forceRefresh.');
         await localDataSource.clearVideos();
       }
-      print('--- VideoRepository: Fetching data from remote source.');
       final remoteVideos = await remoteDataSource.getVideos();
       await localDataSource.cacheVideos(remoteVideos);
       return Right(remoteVideos);

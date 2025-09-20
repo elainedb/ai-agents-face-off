@@ -109,12 +109,8 @@ class VideoRemoteDataSourceImpl implements VideoRemoteDataSource {
 
       return await Future.wait(geocodingFutures);
     } on DioException catch (e) {
-      print('DioException fetching videos:');
-      print('Request: ${e.requestOptions.uri}');
-      print('Response: ${e.response?.data}');
       throw ServerException();
     } catch (e) {
-      print('Error fetching videos: $e');
       throw ServerException();
     }
   }

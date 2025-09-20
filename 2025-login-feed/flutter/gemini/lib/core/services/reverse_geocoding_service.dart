@@ -17,7 +17,6 @@ class ReverseGeocodingService {
       }
     } catch (e) {
       // Handle exceptions, e.g., network errors
-      print('Error during reverse geocoding: $e');
     }
     return null;
   }

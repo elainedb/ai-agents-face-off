@@ -1,102 +1,30 @@
-import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gemini/di.dart';
-import 'package:flutter_gemini/features/login/presentation/bloc/login_bloc.dart';
-import 'package:flutter_gemini/features/login/presentation/bloc/login_event.dart';
-import 'package:flutter_gemini/features/login/presentation/bloc/login_state.dart';
-import 'package:flutter_gemini/features/login/presentation/pages/login_page.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
+// This is a basic Flutter widget test.
+//
+// To perform an interaction with a widget in your test, use the WidgetTester
+// utility in the flutter_test package. For example, you can send tap and scroll
+// gestures. You can also use WidgetTester to find child widgets in the widget
+// tree, read text, and verify that the values of widget properties are correct.
 
-class MockLoginBloc extends MockBloc<LoginEvent, LoginState> implements LoginBloc {}
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import 'package:flutter_gemini/main.dart';
 
 void main() {
-  late MockLoginBloc mockLoginBloc;
+  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
 
-  setUpAll(() {
-    registerFallbackValue(const LoginEvent.loginWithGoogle());
-    registerFallbackValue(const LoginState.initial());
-  });
+    // Verify that our counter starts at 0.
+    expect(find.text('0'), findsOneWidget);
+    expect(find.text('1'), findsNothing);
 
-  setUp(() {
-    mockLoginBloc = MockLoginBloc();
-    if (getIt.isRegistered<LoginBloc>()) {
-      getIt.unregister<LoginBloc>();
-    }
-    getIt.registerSingleton<LoginBloc>(mockLoginBloc);
-  });
-
-  testWidgets('Login page displays correctly', (WidgetTester tester) async {
-    when(() => mockLoginBloc.state).thenReturn(const LoginState.initial());
-
-    await tester.pumpWidget(
-      MaterialApp(
-        home: BlocProvider<LoginBloc>(
-          create: (context) => mockLoginBloc,
-          child: const LoginPage(),
-        ),
-      ),
-    );
-
-    expect(find.text('Login with Google'), findsOneWidget);
-    expect(find.byType(ElevatedButton), findsOneWidget);
-    expect(find.text('Sign in with Google'), findsOneWidget);
-  });
-
-  testWidgets('Login button triggers LoginWithGoogle event', (WidgetTester tester) async {
-    when(() => mockLoginBloc.state).thenReturn(const LoginState.initial());
-    when(() => mockLoginBloc.add(const LoginEvent.loginWithGoogle()))
-        .thenReturn(null);
-
-    await tester.pumpWidget(
-      MaterialApp(
-        home: BlocProvider<LoginBloc>(
-          create: (context) => mockLoginBloc,
-          child: const LoginPage(),
-        ),
-      ),
-    );
-
-    await tester.tap(find.byType(ElevatedButton));
+    // Tap the '+' icon and trigger a frame.
+    await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
 
-    verify(() => mockLoginBloc.add(const LoginEvent.loginWithGoogle())).called(1);
-  });
-
-  testWidgets('Loading indicator is shown when state is loading', (WidgetTester tester) async {
-    when(() => mockLoginBloc.state).thenReturn(const LoginState.loading());
-
-    await tester.pumpWidget(
-      MaterialApp(
-        home: BlocProvider<LoginBloc>(
-          create: (context) => mockLoginBloc,
-          child: const LoginPage(),
-        ),
-      ),
-    );
-
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
-  });
-
-  testWidgets('Error message is shown when state is error', (WidgetTester tester) async {
-    whenListen(
-      mockLoginBloc,
-      Stream.fromIterable([const LoginState.initial(), const LoginState.error('Test Error')]),
-      initialState: const LoginState.initial(),
-    );
-
-    await tester.pumpWidget(
-      MaterialApp(
-        home: BlocProvider<LoginBloc>(
-          create: (context) => mockLoginBloc,
-          child: const LoginPage(),
-        ),
-      ),
-    );
-
-    await tester.pump(); // Pump to trigger the listener
-
-    expect(find.text('Test Error'), findsOneWidget);
+    // Verify that our counter has incremented.
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
   });
 }

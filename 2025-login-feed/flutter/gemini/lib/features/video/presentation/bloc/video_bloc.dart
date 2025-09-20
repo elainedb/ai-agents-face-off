@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:flutter_gemini/core/usecases/usecase.dart';
 import 'package:flutter_gemini/features/video/domain/usecases/get_videos.dart';
 import 'package:flutter_gemini/features/video/presentation/bloc/video_event.dart';
 import 'package:flutter_gemini/features/video/presentation/bloc/video_state.dart';
@@ -18,7 +17,6 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
 
   Future<void> _onFetchVideos(
       FetchVideos event, Emitter<VideoState> emit) async {
-    print('--- VideoBloc: Handling FetchVideos event with forceRefresh: ${event.forceRefresh}');
     emit(VideoLoading());
     final failureOrVideos =
         await getVideos(GetVideosParams(forceRefresh: event.forceRefresh));

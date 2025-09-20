@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gemini/di.dart';
 import 'package:flutter_gemini/features/video/presentation/bloc/video_bloc.dart';
 import 'package:flutter_gemini/features/video/presentation/bloc/video_event.dart';
 import 'package:flutter_gemini/features/video/presentation/bloc/video_state.dart';
@@ -30,7 +29,6 @@ class _VideoPageState extends State<VideoPage> {
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () {
-              print('--- Refresh button pressed: Forcing refresh.');
               context.read<VideoBloc>().add(const FetchVideos(forceRefresh: true));
             },
           ),
