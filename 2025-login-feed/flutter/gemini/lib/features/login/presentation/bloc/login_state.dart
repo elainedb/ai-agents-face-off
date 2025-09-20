@@ -1,12 +1,19 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-part 'login_state.freezed.dart';
+abstract class LoginState {}
 
-@freezed
-abstract class LoginState with _$LoginState {
-  const factory LoginState.initial() = _Initial;
-  const factory LoginState.loading() = _Loading;
-  const factory LoginState.success(GoogleSignInAccount user) = _Success;
-  const factory LoginState.error(String message) = _Error;
+class LoginInitial extends LoginState {}
+
+class LoginLoading extends LoginState {}
+
+class LoginSuccess extends LoginState {
+  final GoogleSignInAccount user;
+
+  LoginSuccess(this.user);
+}
+
+class LoginError extends LoginState {
+  final String message;
+
+  LoginError(this.message);
 }

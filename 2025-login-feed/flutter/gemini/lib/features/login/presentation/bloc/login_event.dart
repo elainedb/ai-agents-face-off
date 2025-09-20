@@ -1,8 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+abstract class LoginEvent {}
 
-part 'login_event.freezed.dart';
-
-@freezed
-abstract class LoginEvent with _$LoginEvent {
-  const factory LoginEvent.loginWithGoogle() = _LoginWithGoogle;
-}
+class LoginWithGoogle extends LoginEvent {}

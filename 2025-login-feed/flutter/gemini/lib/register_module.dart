@@ -1,12 +1,37 @@
+import 'package:dio/dio.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
 @module
 abstract class RegisterModule {
   @lazySingleton
-  GoogleSignIn get googleSignIn => GoogleSignIn();
+  Dio get dio {
+    final dio = Dio();
+    dio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      responseBody: true,
+      requestHeader: true,
+      responseHeader: true,
+    ));
+    return dio;
+  }
 
   @lazySingleton
-  http.Client get httpClient => http.Client();
+  GoogleSignIn get googleSignIn => GoogleSignIn();
+
+  @preResolve
+  @singleton
+  Future<Database> get database async {
+    return openDatabase(
+      join(await getDatabasesPath(), 'videos.db'),
+      onCreate: (db, version) {
+        return db.execute(
+          'CREATE TABLE videos(id TEXT PRIMARY KEY, video TEXT, timestamp INTEGER)',
+        );
+      },
+      version: 1,
+    );
+  }
 }

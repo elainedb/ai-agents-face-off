@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gemini/features/login/presentation/bloc/login_bloc.dart';
 import 'package:flutter_gemini/features/login/presentation/bloc/login_state.dart';
 import 'package:flutter_gemini/features/login/presentation/widgets/login_button.dart';
-import 'package:flutter_gemini/features/video/presentation/pages/video_list_page.dart';
+import 'package:flutter_gemini/features/video/presentation/pages/video_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -17,33 +17,28 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: BlocConsumer<LoginBloc, LoginState>(
           listener: (context, state) {
-            state.when(
-              initial: () {},
-              loading: () {},
-              success: (user) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const VideoListPage(),
-                  ),
-                );
-              },
-              error: (message) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(message),
-                  ),
-                );
-              },
-            );
+            if (state is LoginSuccess) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const VideoPage(),
+                ),
+              );
+            } else if (state is LoginError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message),
+                ),
+              );
+            }
           },
           builder: (context, state) {
-            return state.when(
-              initial: () => const LoginButton(),
-              loading: () => const CircularProgressIndicator(),
-              success: (_) => const SizedBox(),
-              error: (_) => const LoginButton(),
-            );
+            if (state is LoginLoading) {
+              return const CircularProgressIndicator();
+            } else if (state is LoginSuccess) {
+              return const SizedBox();
+            }
+            return const LoginButton();
           },
         ),
       ),

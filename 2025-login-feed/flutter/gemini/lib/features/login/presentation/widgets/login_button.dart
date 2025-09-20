@@ -10,7 +10,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        context.read<LoginBloc>().add(const LoginEvent.loginWithGoogle());
+        context.read<LoginBloc>().add(LoginWithGoogle());
       },
       child: const Text('Sign in with Google'),
     );
