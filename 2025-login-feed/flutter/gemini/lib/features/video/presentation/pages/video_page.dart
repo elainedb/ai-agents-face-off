@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gemini/features/map/presentation/pages/map_screen.dart';
 import 'package:flutter_gemini/features/video/presentation/bloc/video_bloc.dart';
 import 'package:flutter_gemini/features/video/presentation/bloc/video_event.dart';
 import 'package:flutter_gemini/features/video/presentation/bloc/video_state.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_gemini/features/video/presentation/widgets/video_list.da
 
 class VideoPage extends StatefulWidget {
   const VideoPage({super.key});
-
+  
   @override
   State<VideoPage> createState() => _VideoPageState();
 }
@@ -78,9 +79,21 @@ class _VideoPageState extends State<VideoPage> {
           return const SizedBox.shrink();
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MapScreen()),
+          );
+        },
+        child: const Tooltip(
+          message: 'View Map',
+          child: Icon(Icons.map),
+        ),
+      ),
     );
   }
-
+  
   void _showFilterDialog(BuildContext context, VideoLoaded state) {
     final channels =
         state.originalVideos.map((v) => v.channelTitle).toSet().toList();
@@ -89,10 +102,10 @@ class _VideoPageState extends State<VideoPage> {
         .map((v) => v.country!)
         .toSet()
         .toList();
-
+    
     String? selectedChannel = state.filter.channel;
     String? selectedCountry = state.filter.country;
-
+    
     showDialog(
       context: context,
       builder: (dialogContext) {
@@ -170,7 +183,7 @@ class _VideoPageState extends State<VideoPage> {
       },
     );
   }
-
+  
   void _showSortDialog(BuildContext context, VideoLoaded state) {
     showModalBottomSheet(
       context: context,

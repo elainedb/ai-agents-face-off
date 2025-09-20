@@ -26,6 +26,10 @@ import 'features/login/domain/repositories/login_repository.dart' as _i889;
 import 'features/login/domain/usecases/is_email_authorized.dart' as _i976;
 import 'features/login/domain/usecases/login_with_google.dart' as _i743;
 import 'features/login/presentation/bloc/login_bloc.dart' as _i1070;
+import 'features/map/data/repositories/map_repository_impl.dart' as _i1035;
+import 'features/map/domain/repositories/map_repository.dart' as _i914;
+import 'features/map/domain/usecases/get_video_locations.dart' as _i1005;
+import 'features/map/presentation/bloc/map_bloc.dart' as _i236;
 import 'features/video/data/datasources/video_local_data_source.dart' as _i242;
 import 'features/video/data/datasources/video_local_data_source_impl.dart'
     as _i411;
@@ -78,6 +82,9 @@ Future<_i174.GetIt> $initGetIt(
       gh<_i242.VideoLocalDataSource>(),
     ),
   );
+  gh.lazySingleton<_i914.MapRepository>(
+    () => _i1035.MapRepositoryImpl(gh<_i454.VideoRepository>()),
+  );
   gh.lazySingleton<_i889.LoginRepository>(
     () => _i1059.LoginRepositoryImpl(
       remoteDataSource: gh<_i18.LoginRemoteDataSource>(),
@@ -98,12 +105,18 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i976.IsEmailAuthorized>(
     () => _i976.IsEmailAuthorized(gh<_i590.AuthRepository>()),
   );
+  gh.factory<_i1005.GetVideoLocations>(
+    () => _i1005.GetVideoLocations(gh<_i914.MapRepository>()),
+  );
   gh.factory<_i1070.LoginBloc>(
     () => _i1070.LoginBloc(
       gh<_i743.LoginWithGoogle>(),
       gh<_i976.IsEmailAuthorized>(),
       gh<_i116.GoogleSignIn>(),
     ),
+  );
+  gh.factory<_i236.MapBloc>(
+    () => _i236.MapBloc(gh<_i1005.GetVideoLocations>()),
   );
   return getIt;
 }
