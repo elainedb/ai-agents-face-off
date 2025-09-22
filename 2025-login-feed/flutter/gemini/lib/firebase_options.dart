@@ -69,4 +69,5 @@ class DefaultFirebaseOptions {
     iosClientId: '83953880984-njlmafrauotcea1fnec5c17odatsffi1.apps.googleusercontent.com',
     iosBundleId: 'dev.elainedb.flutterGemini',
   );
+
 }
