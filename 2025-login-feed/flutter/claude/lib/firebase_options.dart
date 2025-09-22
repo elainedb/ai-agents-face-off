@@ -65,8 +65,9 @@ class DefaultFirebaseOptions {
     projectId: 'playground-fddba',
     databaseURL: 'https://playground-fddba.firebaseio.com',
     storageBucket: 'playground-fddba.firebasestorage.app',
-    androidClientId: '83953880984-4156amu9j1f6naik3a48tkec68sm2kj1.apps.googleusercontent.com',
+    androidClientId: '83953880984-2kgqvj68oau5icijds6flgc1qqqhnqdc.apps.googleusercontent.com',
     iosClientId: '83953880984-1t2ljiq75adhbkjc1fbj1ntssclj994b.apps.googleusercontent.com',
     iosBundleId: 'dev.elainedb.flutterClaude',
   );
+
 }
