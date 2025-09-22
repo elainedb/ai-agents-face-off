@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.ksp)
+    id("com.google.firebase.firebase-perf") apply false
     id("jacoco")
 }
 
@@ -14,9 +15,12 @@ plugins {
 val hasGoogleServicesJson = file("google-services.json").exists()
 if (hasGoogleServicesJson) {
     apply(plugin = "com.google.gms.google-services")
+    apply(plugin = "com.google.firebase.firebase-perf")
     logger.lifecycle("Google Services plugin applied (google-services.json found).")
+    logger.lifecycle("Firebase Performance Monitoring plugin applied (google-services.json found).")
 } else {
     logger.lifecycle("Google Services plugin NOT applied (google-services.json missing).")
+    logger.lifecycle("Firebase Performance Monitoring plugin NOT applied (google-services.json missing).")
 }
 
 // Resolve authorized emails from env, file, or local.properties and expose as BuildConfig field
@@ -149,6 +153,13 @@ dependencies {
 
     // Google Sign-In
     implementation(libs.google.play.services.auth)
+
+    // Firebase Performance Monitoring (only if google-services.json exists)
+    if (hasGoogleServicesJson) {
+        // Firebase BOM - manages Firebase dependency versions
+        implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+        implementation("com.google.firebase:firebase-perf-ktx")
+    }
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
