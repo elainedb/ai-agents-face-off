@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(find /Users/elaine/work/aiagents-face-off/ytdash_rn_claude -type f \\\\\\(-name google-services.json -o -name GoogleService-Info.plist -o -name *firebase* -o -name *google* -o -name config.json \\\\\\))",
+      "Bash(grep -r \"firebase\\\\|Firebase\\\\|google\\\\|Google\" /Users/elaine/work/aiagents-face-off/ytdash_rn_claude --include=*.tsx --include=*.ts --include=*.json)",
+      "Bash(npm test:*)",
+      "Bash(npx expo:*)",
+      "Bash(ANDROID_HOME=/Users/elaine/Library/Android/sdk GRADLE_OPTS=\"-Xmx4g -XX:MaxMetaspaceSize=1g\" ./gradlew app:assembleDebug -x lint -x lintVitalAnalyzeRelease -x test --no-daemon)"
+    ]
+  }
+}
