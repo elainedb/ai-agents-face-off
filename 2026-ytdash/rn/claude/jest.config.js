@@ -13,6 +13,7 @@ module.exports = {
     'hooks/**/*.{ts,tsx}',
     'utils/**/*.{ts,tsx}',
     'constants/**/*.{ts,tsx}',
+    'services/**/*.{ts,tsx}',
     '!**/*.d.ts',
   ],
   transformIgnorePatterns: [

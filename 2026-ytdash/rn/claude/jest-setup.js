@@ -1,13 +1,17 @@
 // Mock react-native modules for jsdom test environment
 jest.mock('react-native', () => ({
-  Platform: { select: jest.fn((obj) => obj.web || obj.default) },
+  Platform: { select: jest.fn((obj) => obj.android || obj.default), OS: 'android' },
   StyleSheet: { create: (styles) => styles },
+  StatusBar: { currentHeight: 24 },
+  Alert: { alert: jest.fn() },
+  Linking: { canOpenURL: jest.fn(), openURL: jest.fn() },
 }));
 
 jest.mock('expo-router', () => ({
   Link: ({ children }) => children,
-  useRouter: () => ({ push: jest.fn(), back: jest.fn() }),
+  useRouter: () => ({ push: jest.fn(), back: jest.fn(), replace: jest.fn() }),
   useLocalSearchParams: () => ({}),
+  Redirect: () => null,
 }));
 
 jest.mock('expo-image', () => ({
@@ -24,26 +28,43 @@ jest.mock('expo-splash-screen', () => ({
   hideAsync: jest.fn(),
 }));
 
-jest.mock('@react-native-firebase/app', () => ({
-  __esModule: true,
-  default: {
-    apps: [],
-    initializeApp: jest.fn(),
+jest.mock('@react-native-google-signin/google-signin', () => ({
+  GoogleSignin: {
+    configure: jest.fn(),
+    hasPlayServices: jest.fn().mockResolvedValue(true),
+    signIn: jest.fn().mockResolvedValue({ data: { user: { email: 'test@test.com' } } }),
+    signOut: jest.fn().mockResolvedValue(null),
+    getCurrentUser: jest.fn().mockReturnValue(null),
+  },
+  statusCodes: {
+    SIGN_IN_CANCELLED: 'SIGN_IN_CANCELLED',
+    IN_PROGRESS: 'IN_PROGRESS',
+    PLAY_SERVICES_NOT_AVAILABLE: 'PLAY_SERVICES_NOT_AVAILABLE',
   },
 }));
 
-jest.mock('@react-native-firebase/auth', () => {
-  const mockAuth = jest.fn(() => ({
-    currentUser: null,
-    onAuthStateChanged: jest.fn(),
-    signInWithCredential: jest.fn(),
-    signOut: jest.fn(),
-  }));
-  mockAuth.GoogleAuthProvider = {
-    credential: jest.fn(),
-  };
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  __esModule: true,
+  default: {
+    getItem: jest.fn().mockResolvedValue(null),
+    setItem: jest.fn().mockResolvedValue(null),
+    removeItem: jest.fn().mockResolvedValue(null),
+  },
+}));
+
+jest.mock('react-native-webview', () => ({
+  WebView: 'WebView',
+}));
+
+jest.mock('react-native-gesture-handler', () => ({
+  GestureHandlerRootView: ({ children }) => children,
+}));
+
+jest.mock('@gorhom/bottom-sheet', () => {
+  const React = require('react');
   return {
     __esModule: true,
-    default: mockAuth,
+    default: React.forwardRef((props, ref) => props.children),
+    BottomSheetView: ({ children }) => children,
   };
 });
