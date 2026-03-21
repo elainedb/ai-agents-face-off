@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/elaine/work/aiagents-face-off/ytdash_flutter_claude -name GoogleService-Info.plist* -o -name .gitignore)",
+      "Bash(flutter pub:*)",
+      "Bash(dart run:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter test:*)",
+      "Bash(flutter build:*)"
+    ]
+  }
+}
