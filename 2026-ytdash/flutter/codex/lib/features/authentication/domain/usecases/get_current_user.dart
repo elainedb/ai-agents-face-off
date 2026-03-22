@@ -1,0 +1,19 @@
+import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../../../core/error/failures.dart';
+import '../../../../core/usecases/usecase.dart';
+import '../entities/user.dart';
+import '../repositories/auth_repository.dart';
+
+@injectable
+class GetCurrentUser implements UseCase<User?, NoParams> {
+  GetCurrentUser(this._repository);
+
+  final AuthRepository _repository;
+
+  @override
+  Future<Either<Failure, User?>> call(NoParams params) {
+    return _repository.getCurrentUser();
+  }
+}
