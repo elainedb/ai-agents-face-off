@@ -5,13 +5,12 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "ytdashrncodex",
+    "scheme": "rncodex",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "dev.elainedb.rn-codex",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "bundleIdentifier": "dev.elainedb.rn-codex"
     },
     "android": {
       "package": "dev.elainedb.rn_codex",
@@ -43,8 +42,6 @@
           }
         }
       ],
-      "@react-native-firebase/app",
-      "@react-native-firebase/auth",
       "@react-native-google-signin/google-signin"
     ],
     "experiments": {
