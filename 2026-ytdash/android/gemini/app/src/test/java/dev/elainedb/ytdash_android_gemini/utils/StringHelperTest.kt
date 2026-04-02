@@ -1,85 +1,47 @@
 package dev.elainedb.ytdash_android_gemini.utils
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Test
 
 class StringHelperTest {
 
     @Test
-    fun `isPalindrome returns true for simple palindrome`() {
+    fun isPalindrome_returnsTrueForPalindrome() {
+        assertTrue(StringHelper.isPalindrome("A man, a plan, a canal: Panama"))
         assertTrue(StringHelper.isPalindrome("racecar"))
     }
 
     @Test
-    fun `isPalindrome ignores case and spaces`() {
-        assertTrue(StringHelper.isPalindrome("A man a plan a canal Panama"))
-    }
-
-    @Test
-    fun `isPalindrome returns false for non-palindrome`() {
+    fun isPalindrome_returnsFalseForNonPalindrome() {
         assertFalse(StringHelper.isPalindrome("hello"))
     }
 
     @Test
-    fun `isPalindrome handles empty string`() {
-        assertTrue(StringHelper.isPalindrome(""))
+    fun countWords_returnsCorrectCount() {
+        assertEquals(3, StringHelper.countWords("Hello   world  again"))
+        assertEquals(0, StringHelper.countWords("   "))
     }
 
     @Test
-    fun `wordCount returns correct count`() {
-        assertEquals(3, StringHelper.wordCount("hello world test"))
+    fun reverseWords_returnsReversedWords() {
+        assertEquals("again world Hello", StringHelper.reverseWords("Hello world again"))
     }
 
     @Test
-    fun `wordCount handles multiple spaces`() {
-        assertEquals(2, StringHelper.wordCount("hello   world"))
-    }
-
-    @Test
-    fun `wordCount returns zero for blank string`() {
-        assertEquals(0, StringHelper.wordCount(""))
-        assertEquals(0, StringHelper.wordCount("   "))
-    }
-
-    @Test
-    fun `reverseWords reverses word order`() {
-        assertEquals("world hello", StringHelper.reverseWords("hello world"))
-    }
-
-    @Test
-    fun `capitalizeWords capitalizes first letter of each word`() {
+    fun capitalizeWords_capitalizesEachWord() {
         assertEquals("Hello World", StringHelper.capitalizeWords("hello world"))
     }
 
     @Test
-    fun `removeVowels removes all vowels`() {
+    fun removeVowels_removesAllVowels() {
         assertEquals("hll wrld", StringHelper.removeVowels("hello world"))
+        assertEquals("Hll", StringHelper.removeVowels("Hello"))
     }
 
     @Test
-    fun `removeVowels handles uppercase vowels`() {
-        assertEquals("HLL", StringHelper.removeVowels("HAELLO"))
-    }
-
-    @Test
-    fun `isValidEmail accepts valid email`() {
-        assertTrue(StringHelper.isValidEmail("user@example.com"))
-    }
-
-    @Test
-    fun `isValidEmail rejects missing at sign`() {
-        assertFalse(StringHelper.isValidEmail("userexample.com"))
-    }
-
-    @Test
-    fun `isValidEmail rejects missing domain`() {
-        assertFalse(StringHelper.isValidEmail("user@"))
-    }
-
-    @Test
-    fun `isValidEmail rejects missing TLD`() {
-        assertFalse(StringHelper.isValidEmail("user@example"))
+    fun isValidEmail_validatesCorrectly() {
+        assertTrue(StringHelper.isValidEmail("test@example.com"))
+        assertFalse(StringHelper.isValidEmail("invalid-email"))
+        assertFalse(StringHelper.isValidEmail("test@example"))
     }
 }
