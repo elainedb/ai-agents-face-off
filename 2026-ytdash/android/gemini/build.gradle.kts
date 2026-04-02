@@ -4,7 +4,10 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.google.services) apply false
-    id("org.sonarqube") version "6.3.1.5724"
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.firebase.perf) apply false
+    alias(libs.plugins.sonarqube)
 }
 
 sonar {
