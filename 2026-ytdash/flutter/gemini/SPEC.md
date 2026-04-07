@@ -80,9 +80,9 @@ A script `scripts/ensure_config.dart` generates safe placeholder config files (e
 
 `lib/main.dart` performs this startup sequence:
 1. `WidgetsFlutterBinding.ensureInitialized()`
-2. `Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)`
+2. `Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)` — wrapped in a `try/catch` that suppresses the `duplicate-app` error (see section 11.2 for details)
 3. `configureDependencies()` — initializes the GetIt service locator
-4. `runApp(MyApp())`
+4. `runApp(const MyApp())`
 
 `MyApp` is a `MaterialApp` using Material 3 with a deep purple color scheme seed. It wraps the root with a `BlocProvider<AuthBloc>` and dispatches `AuthEvent.checkAuthStatus()` on creation. The home widget is `AuthWrapper`.
 
@@ -191,13 +191,22 @@ A script `scripts/ensure_config.dart` generates safe placeholder config files (e
 **Remote data source — `VideosRemoteDataSource`:**
 - `getVideosFromChannels(List<String> channelIds)` → `Future<List<VideoModel>>`
 - Implementation:
-  1. For each channel ID, call YouTube Data API `search` endpoint (`type=video`, `order=date`, `maxResults=50`), paginating through all results using `nextPageToken`.
+  1. For each channel ID, call YouTube Data API `search` endpoint (`type=video`, `order=date`, `maxResults=50`). **Exhaustive pagination:** follow `nextPageToken` in a loop until the API returns no `nextPageToken` (i.e., it is `null`/absent in the response), ensuring every video from every channel is fetched regardless of channel size. There is no artificial page limit. All channels are fetched in parallel using `Future.wait`.
   2. Collect all video IDs from search results.
-  3. Call YouTube Data API `videos` endpoint with `part=snippet,recordingDetails` to fetch detailed info (tags, location, recording date).
+  3. Call YouTube Data API `videos` endpoint with `part=snippet,recordingDetails` to fetch detailed info (tags, location, recording date). Video IDs are batched in groups of 50 (API limit per request).
   4. Build `VideoModel` objects from the detailed data.
-  5. For videos with GPS coordinates (`latitude`/`longitude`), perform **reverse geocoding** using the `geocoding` package to derive city and country names. Fall back to parsing `locationDescription` if geocoding fails.
+  5. For videos with GPS coordinates (`latitude`/`longitude`), perform **reverse geocoding** (see Reverse Geocoding section below).
   6. Sort all videos by `publishedAt` descending.
 - YouTube API key is read from `Config.youtubeApiKey`.
+
+**Reverse Geocoding (`GeocodingService`):**
+- Converts GPS coordinates to city/country names using the `geocoding` package (platform-native geocoder).
+- **In-memory cache:** A `Map<String, (String?, String?)>` caches resolved coordinates. Cache keys are coordinates rounded to 3 decimal places (~111m precision) to group nearby points and avoid redundant lookups.
+- **Concurrency control:** Geocoding requests are processed through an async queue with a concurrency limit of 5 to avoid overwhelming the platform geocoder.
+- **Retry with backoff:** Failed lookups retry up to 3 times with exponential backoff (500ms, 1s, 2s) before falling back.
+- **Fallback chain:** If the platform geocoder fails or is unavailable, falls back to the OpenStreetMap Nominatim API (`nominatim.openstreetmap.org/reverse`) with a proper `User-Agent` header (`dev.elainedb.{project_name}/1.0`) and 1-second minimum delay between requests (Nominatim usage policy). If Nominatim also fails, falls back to parsing `locationDescription` from the YouTube API snippet using regex for "City, Country" patterns.
+- **Batch processing:** Videos are geocoded in batches during the API fetch phase. Already-cached coordinates are resolved instantly; only uncached coordinates hit the geocoder or network.
+- City resolution fallback chain (from platform geocoder): `locality` → `subLocality` → `administrativeArea` → `name`.
 
 **Local data source — `VideosLocalDataSource`** (SQLite via `sqflite`):
 - Database: `videos.db` with a single `videos` table.
@@ -297,6 +306,13 @@ static const List<String> _channelIds = [
 - Bottom sheet is dismissible (close button), takes up no more than ~25% of screen height.
 - Handles edge cases: no videos with location data (shows informational message).
 
+##### OpenStreetMap Tile Usage Policy Compliance
+The app must comply with the [OSM Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/) to avoid request rejection or blocking:
+- **User-Agent identification:** Configure `flutter_map`'s `TileLayer` with a unique, identifiable `User-Agent` header via `TileLayer(userAgentPackageName: 'dev.elainedb.{project_name}')`. This is **mandatory** — requests without a proper User-Agent are rejected.
+- **Tile caching:** Use the `flutter_map_cancellable_tile_provider` or a caching HTTP client to store tiles locally and avoid re-downloading. Never send `Cache-Control: no-cache` or `Pragma: no-cache` headers — respect the server's cache directives.
+- **Rate limiting:** Do not aggressively prefetch tiles. Rely on `flutter_map`'s default on-demand tile loading as the user pans/zooms. Avoid programmatic tile prefetch loops.
+- **No bulk downloading:** Only request tiles visible in the current viewport. Do not preload large tile regions.
+
 ---
 
 ## 7. Dependencies
@@ -361,11 +377,93 @@ The app uses two YouTube Data API v3 endpoints:
 
 1. **Search** (`GET https://www.googleapis.com/youtube/v3/search`):
    - Params: `part=snippet`, `channelId=<id>`, `type=video`, `order=date`, `maxResults=50`, `key=<apiKey>`, `pageToken=<token>`
-   - Used to discover videos per channel, paginating through all results.
+   - Used to discover videos per channel. **Exhaustive pagination:** for each channel, follow `nextPageToken` in a loop until the response contains no `nextPageToken`, ensuring all videos are fetched. There is no artificial page limit.
 
 2. **Videos** (`GET https://www.googleapis.com/youtube/v3/videos`):
-   - Params: `part=snippet,recordingDetails`, `id=<comma-separated IDs>`, `key=<apiKey>`
+   - Params: `part=snippet,recordingDetails`, `id=<comma-separated IDs, max 50 per request>`, `key=<apiKey>`
    - Used to fetch detailed metadata: tags, recording location (GPS + description), recording date.
-   - Video IDs are batched from search results.
+   - Video IDs are batched in groups of 50 from search results.
 
-Reverse geocoding is applied to videos with GPS coordinates to derive human-readable city/country names.
+Reverse geocoding is applied to videos with GPS coordinates to derive human-readable city/country names (see Reverse Geocoding in section 6.2).
+
+---
+
+## 10. Code Quality & CI
+
+### Linting
+- Uses `flutter_lints` for static analysis rules.
+- `flutter analyze` runs in CI to catch warnings and errors.
+
+### Test Coverage
+- Coverage reports generated via `flutter test --coverage` (lcov format).
+- Coverage thresholds can be enforced in CI.
+
+### Unit Tests
+- Located in `test/` mirroring the `lib/` directory structure.
+- Use `bloc_test` for BLoC-specific assertions (given/when/then pattern).
+- Use `mocktail` for mocking repositories and data sources.
+
+### Utility Functions (`lib/core/utils/string_helpers.dart`)
+- `isPalindrome(input)` — ignores non-alphanumeric characters, case-insensitive.
+- `countWords(input)` — splits on whitespace regex.
+- `reverseWords(input)` — reverses word order.
+- `capitalizeWords(input)` — title-cases each word.
+- `removeVowels(input)` — strips vowels (case-insensitive regex).
+- `isValidEmail(email)` — validates email format via regex.
+
+Tests in `test/core/utils/string_helpers_test.dart` cover all utility functions.
+
+---
+
+## 11. Common Agent Mistakes
+
+This section documents recurring mistakes that AI agents make when building this project. Address these proactively to avoid build failures and runtime crashes.
+
+### 11.1 Android `minSdk` Must Be 24
+
+Set `minSdk` to **24** in `android/app/build.gradle` (or `build.gradle.kts`). Several dependencies (Firebase, Google Sign-In) require at least API 24. Agents often leave this at the Flutter default (which is lower) and hit build errors.
+
+```groovy
+android {
+    defaultConfig {
+        minSdk = 24
+    }
+}
+```
+
+### 11.2 Firebase `duplicate-app` Initialization Error
+
+**Problem:** On Android, when `google-services.json` is present, the native Android SDK automatically initializes the `[DEFAULT]` Firebase app before the Dart side runs. When `Firebase.initializeApp()` is then called from Dart, it throws:
+
+```
+[ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception:
+[core/duplicate-app] A Firebase App named "[DEFAULT]" already exists
+```
+
+This crashes the app on startup.
+
+**Fix:** Wrap `Firebase.initializeApp(...)` in a `try/catch` block that catches and suppresses the `duplicate-app` error specifically, while rethrowing any other exception. This allows the app to proceed using the already-initialized native instance:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    // If native already initialized the app, just suppress the
+    // exception and proceed.
+    if (!e.toString().contains('duplicate-app')) {
+      rethrow;
+    }
+  }
+
+  configureDependencies();
+
+  runApp(const MyApp());
+}
+```
+
+This is necessary because the native `google-services.json` integration and the Dart-only `DefaultFirebaseOptions` approach can conflict. The `try/catch` safely ignores this specific error during hot restarts, testing environments, and normal Android startup.
