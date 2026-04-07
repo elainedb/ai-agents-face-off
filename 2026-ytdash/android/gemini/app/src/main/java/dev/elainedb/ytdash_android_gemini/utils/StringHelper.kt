@@ -1,33 +1,31 @@
 package dev.elainedb.ytdash_android_gemini.utils
 
 object StringHelper {
-
-    fun isPalindrome(text: String): Boolean {
-        val cleaned = text.lowercase().filter { it.isLetterOrDigit() }
-        return cleaned == cleaned.reversed()
+    fun isPalindrome(input: String): Boolean {
+        val cleanInput = input.replace(Regex("[^A-Za-z0-9]"), "").lowercase()
+        return cleanInput == cleanInput.reversed()
     }
 
-    fun wordCount(text: String): Int {
-        if (text.isBlank()) return 0
-        return text.trim().split("\\s+".toRegex()).size
+    fun countWords(input: String): Int {
+        if (input.trim().isEmpty()) return 0
+        return input.trim().split(Regex("\\s+")).size
     }
 
-    fun reverseWords(text: String): String {
-        return text.trim().split("\\s+".toRegex()).reversed().joinToString(" ")
+    fun reverseWords(input: String): String {
+        return input.split(Regex("\\s+")).reversed().joinToString(" ")
     }
 
-    fun capitalizeWords(text: String): String {
-        return text.split("\\s+".toRegex()).joinToString(" ") { word ->
-            word.replaceFirstChar { it.uppercase() }
+    fun capitalizeWords(input: String): String {
+        return input.split(Regex("\\s+")).joinToString(" ") { word ->
+            word.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
         }
     }
 
-    fun removeVowels(text: String): String {
-        return text.filter { it.lowercaseChar() !in "aeiou" }
+    fun removeVowels(input: String): String {
+        return input.replace(Regex("[aeiouAEIOU]"), "")
     }
 
     fun isValidEmail(email: String): Boolean {
-        val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
-        return emailRegex.matches(email)
+        return email.matches(Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"))
     }
 }
