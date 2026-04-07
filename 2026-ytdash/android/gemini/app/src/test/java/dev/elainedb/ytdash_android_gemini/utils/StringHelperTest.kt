@@ -29,18 +29,18 @@ class StringHelperTest {
 
     @Test
     fun `wordCount returns correct count`() {
-        assertEquals(3, StringHelper.wordCount("hello world test"))
+        assertEquals(3, StringHelper.countWords("hello world test"))
     }
 
     @Test
     fun `wordCount handles multiple spaces`() {
-        assertEquals(2, StringHelper.wordCount("hello   world"))
+        assertEquals(2, StringHelper.countWords("hello   world"))
     }
 
     @Test
     fun `wordCount returns zero for blank string`() {
-        assertEquals(0, StringHelper.wordCount(""))
-        assertEquals(0, StringHelper.wordCount("   "))
+        assertEquals(0, StringHelper.countWords(""))
+        assertEquals(0, StringHelper.countWords("   "))
     }
 
     @Test

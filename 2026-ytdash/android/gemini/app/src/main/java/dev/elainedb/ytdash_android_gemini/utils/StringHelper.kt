@@ -7,7 +7,7 @@ object StringHelper {
         return cleaned == cleaned.reversed()
     }
 
-    fun wordCount(text: String): Int {
+    fun countWords(text: String): Int {
         if (text.isBlank()) return 0
         return text.trim().split("\\s+".toRegex()).size
     }
