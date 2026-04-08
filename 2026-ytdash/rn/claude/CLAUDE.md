@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Expo + React Native app with Google Sign-In authentication that displays YouTube videos from specified channels. Features include video feed with filtering/sorting, local AsyncStorage caching, and a map view showing video recording locations.
+Expo + React Native app with Google Sign-In authentication that displays YouTube videos from specified channels. Features include video feed with filtering/sorting, SQLite caching, and a map view showing video recording locations. Built with Clean Architecture.
 
 ## Build & Run Commands
 
@@ -18,12 +18,15 @@ npm test               # Jest tests
 npm run test:coverage  # Tests with coverage report
 npm run test:ci        # CI: coverage, no watch
 npx jest path/to/file.test.ts  # Run single test file
+npx expo prebuild --platform android  # Generate native project
+npx ts-node scripts/ensure-config.ts  # Generate CI placeholder configs
 ```
 
 ## Configuration
 
 Sensitive config files are gitignored. For local development:
-- `config.json` — YouTube API key (`youtubeApiKey`) and authorized email list (`authorizedEmails`)
+- `src/config/auth-config.ts` — Authorized email whitelist (from `auth-config.template.ts`)
+- `src/config/api-config.ts` — YouTube API key (from `api-config.template.ts`)
 - `google-services.json` — Android Firebase/Google Sign-In config
 
 Additional configuration:
@@ -34,41 +37,49 @@ Additional configuration:
 
 ## Architecture
 
-**Expo 54 + React Native 0.81** app.
+**Expo 54 + React Native 0.81** app using **Clean Architecture** organized by feature under `src/features/`.
+
+**Layers per feature:**
+- **Domain**: Entities, repository interfaces, use cases (`UseCase<T, P>` base). All repo methods return `Result<T>`.
+- **Data**: Repository implementations, remote/local data sources, Zod schemas for validation.
+- **Presentation**: Zustand stores for state management, React screen components.
 
 **Routing**: Expo Router (file-based) in `app/`. Stack navigation: `login → main → map`.
 
 **Key screens**:
-- `app/login.tsx` — Google Sign-In, validates against email whitelist from `config.json`
+- `app/login.tsx` — Google Sign-In via `@react-native-google-signin/google-signin`, validates against email whitelist
 - `app/main.tsx` — FlatList of videos with filter/sort modals, pull-to-refresh, cache-first loading
-- `app/map.tsx` — Leaflet.js map in WebView showing geolocated videos, with a bottom sheet for video details
+- `app/map.tsx` — `react-native-maps` with OpenStreetMap tiles, animated bottom panel for video details
 
-**Services layer** (`services/`):
-- `youtubeApi.ts` — YouTube Data API v3 client. Fetches from 4 hardcoded channel IDs, extracts location metadata, reverse-geocodes via OpenStreetMap Nominatim (rate-limited 1 req/sec)
-- `cacheService.ts` — AsyncStorage wrapper with 24-hour TTL
+**DI Container**: `src/core/di/container.ts` — Manual dependency injection, initialized at app startup.
 
 ### Key Patterns
 
-- **State management**: Local React state (useState/useEffect). No external state library.
-- **Caching**: AsyncStorage with 24-hour TTL. Service layer falls back to cache when remote fails.
-- **Theming**: Custom themed components (`components/themed-text.tsx`, `themed-view.tsx`) with light/dark mode support via `hooks/use-color-scheme.ts`.
-- **Networking**: Direct fetch calls to YouTube Data API v3. Reverse geocoding via OpenStreetMap Nominatim with rate limiting.
+- **State management**: Zustand stores (`auth-store.ts`, `videos-store.ts`)
+- **Caching**: SQLite via `expo-sqlite` with 24-hour TTL
+- **Error handling**: `Result<T>` type, `Failure` discriminated union, exception classes
+- **Validation**: Zod schemas for API response validation
+- **Networking**: Direct fetch to YouTube Data API v3. Reverse geocoding via OpenStreetMap Nominatim (rate-limited 1 req/sec)
+- **Firebase**: `@react-native-firebase/app` + `@react-native-firebase/perf` for performance monitoring
 
 ## Testing
 
-Jest with ts-jest and `@testing-library/react-native`. Test environment is jsdom. Tests live alongside source files (`*.test.ts(x)`). Coverage collects from `app/`, `components/`, `hooks/`, `utils/`, `constants/`.
+Jest with `babel-jest` and `@testing-library/react-native`. Test environment is jsdom. Tests in `src/utils/__tests__/`. Coverage collects from `app/` and `src/`.
 
-`jest-setup.js` mocks react-native and expo modules for the web-based test environment.
+`jest-setup.js` mocks react-native, expo, and native modules for the test environment.
 
 ## CI/CD
 
-GitHub Actions (`.github/workflows/build.yml`): checkout → npm ci → test → lint → SonarCloud scan. Runs on pushes to main and PRs.
+GitHub Actions (`.github/workflows/build.yml`): checkout → npm ci → ensure-config → test → lint → SonarCloud scan.
 
 ## Key Dependencies
 
 - expo + react-native for cross-platform UI
 - expo-router for file-based navigation
-- @react-native-async-storage/async-storage for caching
-- expo-auth-session + expo-web-browser for Google Sign-In
-- react-native-webview for Leaflet.js map integration
-- @gorhom/bottom-sheet for map video details
+- expo-sqlite for SQLite caching
+- @react-native-google-signin/google-signin for Google Sign-In
+- @react-native-firebase/app + perf for Firebase Performance
+- zustand for state management
+- zod for runtime validation
+- react-native-maps for native map view
+- @gorhom/bottom-sheet + react-native-gesture-handler + react-native-reanimated

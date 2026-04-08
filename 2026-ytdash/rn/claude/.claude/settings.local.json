@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx jest:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx expo:*)",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(npm ls:*)",
+      "Bash(./gradlew assembleRelease)",
+      "Bash(GRADLE_OPTS=\"-Xmx4g\" ./gradlew assembleRelease)"
+    ]
+  }
+}

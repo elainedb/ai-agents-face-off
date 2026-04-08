@@ -9,13 +9,11 @@ module.exports = {
   },
   collectCoverageFrom: [
     'app/**/*.{ts,tsx}',
-    'components/**/*.{ts,tsx}',
-    'hooks/**/*.{ts,tsx}',
-    'utils/**/*.{ts,tsx}',
-    'constants/**/*.{ts,tsx}',
+    'src/**/*.{ts,tsx}',
     '!**/*.d.ts',
+    '!src/config/*.ts',
   ],
   transformIgnorePatterns: [
-    'node_modules/(?!(expo|expo-.*|@expo|react-native|@react-native|@react-navigation)/)',
+    'node_modules/(?!(expo|expo-.*|@expo|react-native|@react-native|@react-navigation|zustand|zod)/)',
   ],
 };
