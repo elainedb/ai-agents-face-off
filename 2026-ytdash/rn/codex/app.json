@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "ytdash_rn_codex",
+    "name": "YouTube Videos",
     "slug": "ytdash_rn_codex",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "ytdashrncodex",
+    "scheme": "rncodex",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -45,6 +45,7 @@
       ],
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
+      "@react-native-firebase/perf",
       "@react-native-google-signin/google-signin"
     ],
     "experiments": {
