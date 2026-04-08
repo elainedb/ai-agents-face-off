@@ -1,0 +1,39 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import '../../domain/entities/user.dart';
+
+part 'user_model.freezed.dart';
+part 'user_model.g.dart';
+
+@freezed
+sealed class UserModel with _$UserModel {
+  const factory UserModel({
+    required String id,
+    required String name,
+    required String email,
+    String? photoUrl,
+  }) = _UserModel;
+
+  const UserModel._();
+
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
+
+  factory UserModel.fromFirebaseUser(firebase_auth.User firebaseUser) {
+    return UserModel(
+      id: firebaseUser.uid,
+      name: firebaseUser.displayName ?? '',
+      email: firebaseUser.email ?? '',
+      photoUrl: firebaseUser.photoURL,
+    );
+  }
+
+  User toEntity() {
+    return User(
+      id: id,
+      name: name,
+      email: email,
+      photoUrl: photoUrl,
+    );
+  }
+}
