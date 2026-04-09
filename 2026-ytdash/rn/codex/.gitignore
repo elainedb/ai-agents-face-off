@@ -45,3 +45,5 @@ app-example
 google-services.json
 config.js
 config.json
+src/config/auth-config.ts
+src/config/api-config.ts
