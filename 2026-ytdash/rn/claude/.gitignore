@@ -44,3 +44,7 @@ app-example
 
 config.json
 config.js
+
+# Sensitive config files
+src/config/auth-config.ts
+src/config/api-config.ts
