@@ -45,6 +45,7 @@
       ],
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
+      "@react-native-firebase/perf",
       "@react-native-google-signin/google-signin"
     ],
     "experiments": {

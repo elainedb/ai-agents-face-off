@@ -8,6 +8,7 @@ node_modules/
 dist/
 web-build/
 expo-env.d.ts
+coverage/
 
 # Native
 .kotlin/
@@ -43,5 +44,8 @@ app-example
 /android
 
 google-services.json
+GoogleService-Info.plist
 config.js
 config.json
+src/config/auth-config.ts
+src/config/api-config.ts
