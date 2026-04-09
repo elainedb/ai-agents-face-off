@@ -44,3 +44,5 @@ app-example
 
 config.json
 config.js
+src/config/auth-config.ts
+src/config/api-config.ts

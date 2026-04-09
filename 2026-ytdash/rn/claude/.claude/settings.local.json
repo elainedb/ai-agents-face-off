@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx jest:*)",
+      "Bash(npx expo:*)",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(grep -E \"^.*\\(error|fatal\\).*$\" -i)"
+    ]
+  }
+}
