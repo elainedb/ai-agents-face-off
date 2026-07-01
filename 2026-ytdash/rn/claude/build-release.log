@@ -1,0 +1,680 @@
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:shared:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:processResources NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:processResources NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:classes UP-TO-DATE
+> Task :gradle-plugin:shared:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:jar UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:settings-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-max-sdk-override-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-module-gradle-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-max-sdk-override-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-max-sdk-override-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-max-sdk-override-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-max-sdk-override-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-max-sdk-override-plugin:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-max-sdk-override-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:jar UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-module-gradle-plugin:classes UP-TO-DATE
+> Task :expo-module-gradle-plugin:jar UP-TO-DATE
+
+> Configure project :app
+ ℹ️  [33mApplying gradle plugin[0m '[32mexpo-max-sdk-override-plugin[0m'
+  [expo-max-sdk-override-plugin] This plugin will find all permissions declared with `android:maxSdkVersion`. If there exists a declaration with the `android:maxSdkVersion` annotation and another one without, the plugin will remove the annotation from the final merged manifest. In order to see a log with the changes run a clean build of the app.
+
+> Configure project :
+[32m[ExpoRootProject][0m Using the following versions:
+  - buildTools:  [32m36.0.0[0m
+  - minSdk:      [32m24[0m
+  - compileSdk:  [32m36[0m
+  - targetSdk:   [32m36[0m
+  - ndk:         [32m27.1.12297006[0m
+  - kotlin:      [32m2.1.20[0m
+  - ksp:         [32m2.1.20-2.0.1[0m
+
+> Configure project :expo
+
+Using expo modules
+  - [32mexpo-log-box[0m (57.0.0)
+  - [32mexpo-constants[0m (57.0.2)
+  - [32mexpo-modules-core[0m (57.0.1)
+  - [32mtest-config[0m (0.1.0)
+  - [33m[📦][0m [32mexpo-dom-webview[0m (57.0.0)
+  - [33m[📦][0m [32mexpo-asset[0m (57.0.2)
+  - [33m[📦][0m [32mexpo-file-system[0m (57.0.0)
+  - [33m[📦][0m [32mexpo-font[0m (57.0.0)
+  - [33m[📦][0m [32mexpo-keep-awake[0m (57.0.0)
+  - [33m[📦][0m [32mexpo-linking[0m (57.0.1)
+  - [33m[📦][0m [32mexpo-status-bar[0m (57.0.0)
+
+
+> Task :expo-log-box:preBuild UP-TO-DATE
+> Task :test-config:preBuild UP-TO-DATE
+> Task :expo-log-box:preReleaseBuild UP-TO-DATE
+> Task :expo-modules-core:preBuild UP-TO-DATE
+> Task :test-config:preReleaseBuild UP-TO-DATE
+> Task :expo-modules-core:preReleaseBuild UP-TO-DATE
+> Task :expo:generatePackagesList
+> Task :expo:preBuild
+> Task :expo:preReleaseBuild
+> Task :app:generateAutolinkingNewArchitectureFiles
+> Task :test-config:mergeReleaseJniLibFolders
+> Task :expo-log-box:mergeReleaseJniLibFolders
+> Task :app:generateAutolinkingPackageList UP-TO-DATE
+> Task :app:generateCodegenSchemaFromJavaScript SKIPPED
+> Task :app:generateCodegenArtifactsFromSchema SKIPPED
+> Task :test-config:mergeReleaseNativeLibs NO-SOURCE
+> Task :expo-log-box:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:generateReactNativeEntryPoint
+> Task :expo:mergeReleaseJniLibFolders
+> Task :expo:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:buildKotlinToolingMetadata
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-log-box:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :test-config:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-log-box:copyReleaseJniLibsProjectOnly
+> Task :test-config:copyReleaseJniLibsProjectOnly
+> Task :expo:copyReleaseJniLibsProjectOnly
+> Task :expo:generateReleaseBuildConfig
+> Task :test-config:generateReleaseBuildConfig
+> Task :expo-log-box:generateReleaseBuildConfig
+> Task :expo-log-box:generateReleaseResValues
+> Task :test-config:generateReleaseResValues
+> Task :expo:generateReleaseResValues
+> Task :expo:generateReleaseResources
+> Task :test-config:generateReleaseResources
+> Task :expo-log-box:generateReleaseResources
+> Task :test-config:packageReleaseResources
+> Task :expo-log-box:packageReleaseResources
+> Task :expo:packageReleaseResources
+> Task :test-config:javaPreCompileRelease
+> Task :expo:javaPreCompileRelease
+> Task :expo-log-box:javaPreCompileRelease
+> Task :test-config:writeReleaseAarMetadata
+> Task :expo-log-box:writeReleaseAarMetadata
+> Task :expo:writeReleaseAarMetadata
+> Task :expo-log-box:extractDeepLinksRelease
+> Task :test-config:extractDeepLinksRelease
+> Task :expo:extractDeepLinksRelease
+> Task :expo:prepareReleaseArtProfile
+> Task :test-config:prepareReleaseArtProfile
+> Task :expo-log-box:prepareReleaseArtProfile
+> Task :test-config:compileReleaseLibraryResources
+> Task :expo:compileReleaseLibraryResources
+> Task :expo-log-box:compileReleaseLibraryResources
+> Task :expo-log-box:mergeReleaseShaders
+
+> Task :expo-constants:createExpoConfig
+The NODE_ENV environment variable is required but was not specified. Ensure the project is bundled with Expo CLI or NODE_ENV is set. Using only .env.local and .env
+
+> Task :test-config:mergeReleaseShaders
+> Task :expo:mergeReleaseShaders
+> Task :expo-constants:preBuild
+> Task :expo-constants:preReleaseBuild
+> Task :expo-log-box:compileReleaseShaders NO-SOURCE
+> Task :expo-log-box:generateReleaseAssets UP-TO-DATE
+> Task :test-config:compileReleaseShaders NO-SOURCE
+> Task :test-config:generateReleaseAssets UP-TO-DATE
+> Task :expo:compileReleaseShaders NO-SOURCE
+> Task :expo:generateReleaseAssets UP-TO-DATE
+> Task :expo-constants:mergeReleaseJniLibFolders
+> Task :expo-log-box:mergeReleaseAssets
+> Task :test-config:mergeReleaseAssets
+> Task :expo:mergeReleaseAssets
+> Task :expo-constants:mergeReleaseNativeLibs NO-SOURCE
+> Task :expo:parseReleaseLocalResources
+> Task :expo-log-box:parseReleaseLocalResources
+> Task :test-config:parseReleaseLocalResources
+> Task :expo-constants:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-constants:copyReleaseJniLibsProjectOnly
+> Task :expo-constants:generateReleaseBuildConfig
+> Task :test-config:extractProguardFiles
+> Task :expo-log-box:extractProguardFiles
+> Task :expo:extractProguardFiles
+> Task :expo-constants:generateReleaseResValues
+> Task :expo-constants:generateReleaseResources
+> Task :expo:prepareLintJarForPublish
+> Task :expo-log-box:prepareLintJarForPublish
+> Task :test-config:prepareLintJarForPublish
+> Task :react-native-async-storage_async-storage:generateCodegenSchemaFromJavaScript
+> Task :expo:stripReleaseDebugSymbols NO-SOURCE
+> Task :expo-log-box:stripReleaseDebugSymbols NO-SOURCE
+> Task :test-config:stripReleaseDebugSymbols NO-SOURCE
+> Task :expo-constants:packageReleaseResources
+> Task :expo:copyReleaseJniLibsProjectAndLocalJars
+> Task :expo:extractDeepLinksForAarRelease
+> Task :react-native-webview:generateCodegenSchemaFromJavaScript
+> Task :test-config:copyReleaseJniLibsProjectAndLocalJars
+> Task :expo-log-box:copyReleaseJniLibsProjectAndLocalJars
+> Task :test-config:extractDeepLinksForAarRelease
+> Task :expo-constants:javaPreCompileRelease
+> Task :expo-log-box:extractDeepLinksForAarRelease
+> Task :expo-constants:parseReleaseLocalResources
+> Task :expo-constants:writeReleaseAarMetadata
+> Task :expo:writeReleaseLintModelMetadata
+> Task :expo-log-box:writeReleaseLintModelMetadata
+> Task :test-config:writeReleaseLintModelMetadata
+> Task :expo-constants:extractDeepLinksRelease
+> Task :expo-log-box:generateReleaseRFile
+> Task :expo:generateReleaseRFile
+> Task :expo-constants:generateReleaseRFile
+> Task :test-config:generateReleaseRFile
+> Task :expo-log-box:processReleaseManifest
+> Task :test-config:processReleaseManifest
+> Task :expo:processReleaseManifest
+> Task :expo-constants:processReleaseManifest
+> Task :expo-constants:compileReleaseLibraryResources
+> Task :expo-constants:prepareReleaseArtProfile
+> Task :expo-constants:mergeReleaseShaders
+> Task :expo-constants:compileReleaseShaders NO-SOURCE
+> Task :expo-constants:generateReleaseAssets UP-TO-DATE
+> Task :expo-constants:mergeReleaseAssets
+> Task :expo-constants:extractProguardFiles
+> Task :expo-constants:prepareLintJarForPublish
+> Task :expo-constants:stripReleaseDebugSymbols NO-SOURCE
+> Task :expo-constants:copyReleaseJniLibsProjectAndLocalJars
+> Task :expo-constants:extractDeepLinksForAarRelease
+> Task :expo-constants:writeReleaseLintModelMetadata
+> Task :react-native-async-storage_async-storage:generateCodegenArtifactsFromSchema
+> Task :react-native-async-storage_async-storage:preBuild
+> Task :react-native-async-storage_async-storage:preReleaseBuild
+> Task :react-native-async-storage_async-storage:mergeReleaseJniLibFolders
+> Task :react-native-webview:generateCodegenArtifactsFromSchema
+> Task :react-native-webview:preBuild
+> Task :react-native-webview:preReleaseBuild
+> Task :react-native-async-storage_async-storage:mergeReleaseNativeLibs NO-SOURCE
+> Task :react-native-async-storage_async-storage:copyReleaseJniLibsProjectOnly
+> Task :react-native-webview:mergeReleaseJniLibFolders
+> Task :react-native-webview:mergeReleaseNativeLibs NO-SOURCE
+> Task :react-native-async-storage_async-storage:generateReleaseBuildConfig
+> Task :react-native-webview:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-async-storage_async-storage:generateReleaseResValues
+> Task :react-native-webview:copyReleaseJniLibsProjectOnly
+> Task :react-native-async-storage_async-storage:generateReleaseResources
+> Task :react-native-webview:generateReleaseBuildConfig
+> Task :react-native-webview:generateReleaseResValues
+> Task :react-native-webview:generateReleaseResources
+> Task :react-native-async-storage_async-storage:packageReleaseResources
+> Task :react-native-async-storage_async-storage:javaPreCompileRelease
+> Task :react-native-async-storage_async-storage:writeReleaseAarMetadata
+> Task :react-native-async-storage_async-storage:parseReleaseLocalResources
+> Task :react-native-async-storage_async-storage:extractDeepLinksRelease
+> Task :react-native-async-storage_async-storage:generateReleaseRFile
+
+> Task :react-native-async-storage_async-storage:processReleaseManifest
+package="com.reactnativecommunity.asyncstorage" found in source AndroidManifest.xml: /private/tmp/ytrun.fjCESX/workspace/node_modules/@react-native-async-storage/async-storage/android/src/main/AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.reactnativecommunity.asyncstorage" from the source AndroidManifest.xml: /private/tmp/ytrun.fjCESX/workspace/node_modules/@react-native-async-storage/async-storage/android/src/main/AndroidManifest.xml.
+
+> Task :react-native-async-storage_async-storage:compileReleaseLibraryResources
+> Task :react-native-webview:packageReleaseResources
+> Task :react-native-webview:javaPreCompileRelease
+> Task :react-native-webview:writeReleaseAarMetadata
+> Task :react-native-webview:extractDeepLinksRelease
+> Task :react-native-webview:parseReleaseLocalResources
+> Task :react-native-webview:prepareReleaseArtProfile
+> Task :react-native-webview:processReleaseManifest
+> Task :react-native-webview:mergeReleaseShaders
+> Task :react-native-webview:generateReleaseRFile
+> Task :react-native-webview:compileReleaseShaders NO-SOURCE
+> Task :react-native-webview:compileReleaseLibraryResources
+> Task :react-native-webview:generateReleaseAssets UP-TO-DATE
+> Task :react-native-webview:mergeReleaseAssets
+> Task :react-native-webview:extractProguardFiles
+> Task :react-native-webview:prepareLintJarForPublish
+> Task :react-native-webview:stripReleaseDebugSymbols NO-SOURCE
+> Task :react-native-webview:copyReleaseJniLibsProjectAndLocalJars
+> Task :react-native-webview:extractDeepLinksForAarRelease
+> Task :react-native-webview:writeReleaseLintModelMetadata
+
+> Task :react-native-async-storage_async-storage:compileReleaseJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /private/tmp/ytrun.fjCESX/workspace/node_modules/@react-native-async-storage/async-storage/android/src/javaPackage/java/com/reactnativecommunity/asyncstorage/AsyncStoragePackage.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :react-native-async-storage_async-storage:prepareReleaseArtProfile
+> Task :react-native-async-storage_async-storage:mergeReleaseShaders
+> Task :react-native-async-storage_async-storage:compileReleaseShaders NO-SOURCE
+> Task :react-native-async-storage_async-storage:generateReleaseAssets UP-TO-DATE
+> Task :react-native-async-storage_async-storage:mergeReleaseAssets
+> Task :react-native-async-storage_async-storage:processReleaseJavaRes NO-SOURCE
+> Task :react-native-async-storage_async-storage:extractProguardFiles
+> Task :react-native-async-storage_async-storage:bundleLibRuntimeToDirRelease
+> Task :react-native-async-storage_async-storage:bundleLibRuntimeToJarRelease
+> Task :react-native-async-storage_async-storage:bundleLibCompileToJarRelease
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-async-storage_async-storage:generateReleaseLintModel
+> Task :react-native-async-storage_async-storage:createFullJarRelease
+> Task :react-native-async-storage_async-storage:prepareLintJarForPublish
+> Task :react-native-async-storage_async-storage:stripReleaseDebugSymbols NO-SOURCE
+> Task :react-native-async-storage_async-storage:copyReleaseJniLibsProjectAndLocalJars
+> Task :react-native-async-storage_async-storage:extractDeepLinksForAarRelease
+> Task :react-native-async-storage_async-storage:extractReleaseAnnotations
+> Task :react-native-async-storage_async-storage:mergeReleaseGeneratedProguardFiles
+> Task :react-native-async-storage_async-storage:mergeReleaseConsumerProguardFiles
+> Task :react-native-async-storage_async-storage:writeReleaseLintModelMetadata
+> Task :react-native-async-storage_async-storage:generateReleaseLintVitalModel
+> Task :react-native-async-storage_async-storage:mergeReleaseJavaResource
+> Task :react-native-async-storage_async-storage:syncReleaseLibJars
+> Task :react-native-async-storage_async-storage:bundleReleaseLocalLintAar
+
+> Task :react-native-webview:compileReleaseKotlin
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:22:8 'object MapBuilder : Any' is deprecated. Use Kotlin's built-in collections extensions.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:82:18 'var allowFileAccessFromFileURLs: Boolean' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:83:18 'var allowUniversalAccessFromFileURLs: Boolean' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:124:21 'fun allowScanningByMediaScanner(): Unit' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:161:36 'var systemUiVisibility: Int' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:300:14 'object MapBuilder : Any' is deprecated. Use Kotlin's built-in collections extensions.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:350:34 Condition is always 'true'.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:369:38 'var allowUniversalAccessFromFileURLs: Boolean' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:430:51 Unchecked cast of 'Any?' to 'HashMap<String, String>'.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:486:23 'var savePassword: Boolean' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:487:23 'var saveFormData: Boolean' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:557:23 'var allowFileAccessFromFileURLs: Boolean' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:602:52 'static field FORCE_DARK_ON: Int' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:602:89 'static field FORCE_DARK_OFF: Int' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:603:35 'static fun setForceDark(p0: @NonNull() WebSettings, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:612:35 'static fun setForceDarkStrategy(p0: @NonNull() WebSettings, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:614:39 'static field DARK_STRATEGY_PREFER_WEB_THEME_OVER_USER_AGENT_DARKENING: Int' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:658:65 Unchecked cast of 'ArrayList<Any?>' to 'List<Map<String, String>>'.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/RNCWebViewManagerImpl.kt:679:23 'var saveFormData: Boolean' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/SubResourceErrorEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/SubResourceErrorEvent.kt:11:3 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/SubResourceErrorEvent.kt:22:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/SubResourceErrorEvent.kt:22:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/SubResourceErrorEvent.kt:23:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.kt:11:3 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.kt:22:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.kt:22:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopCustomMenuSelectionEvent.kt:23:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopHttpErrorEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopHttpErrorEvent.kt:11:3 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopHttpErrorEvent.kt:22:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopHttpErrorEvent.kt:22:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopHttpErrorEvent.kt:23:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.kt:11:3 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.kt:22:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.kt:22:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingErrorEvent.kt:23:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.kt:11:3 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.kt:22:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.kt:22:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingFinishEvent.kt:23:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.kt:11:3 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.kt:22:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.kt:22:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingProgressEvent.kt:23:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingStartEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingStartEvent.kt:11:3 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingStartEvent.kt:22:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingStartEvent.kt:22:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopLoadingStartEvent.kt:23:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopMessageEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopMessageEvent.kt:10:75 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopMessageEvent.kt:21:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopMessageEvent.kt:21:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopMessageEvent.kt:22:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopNewWindowEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopNewWindowEvent.kt:11:3 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopNewWindowEvent.kt:22:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopNewWindowEvent.kt:22:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopNewWindowEvent.kt:23:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.kt:12:3 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.kt:23:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.kt:23:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopRenderProcessGoneEvent.kt:24:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.kt:5:8 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.kt:10:89 'constructor<T : Event<T>>(viewTag: Int): Event<T>' is deprecated. Use constructor with explicit surfaceId instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.kt:27:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.kt:27:42 'interface RCTEventEmitter : JavaScriptModule' is deprecated. Use [RCTModernEventEmitter] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/react-native-webview/android/src/main/java/com/reactnativecommunity/webview/events/TopShouldStartLoadWithRequestEvent.kt:28:21 'fun receiveEvent(targetTag: Int, eventName: String, params: WritableMap?): Unit' is deprecated. Use [RCTModernEventEmitter.receiveEvent] instead.
+
+> Task :app:createBundleReleaseJsAndAssets
+Starting Metro Bundler
+
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+
+> Task :react-native-webview:compileReleaseJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :react-native-webview:bundleLibCompileToJarRelease
+> Task :react-native-webview:processReleaseJavaRes
+> Task :react-native-webview:bundleLibRuntimeToJarRelease
+> Task :react-native-webview:createFullJarRelease
+> Task :react-native-webview:generateReleaseLintModel
+> Task :react-native-webview:bundleLibRuntimeToDirRelease
+> Task :react-native-webview:extractReleaseAnnotations
+> Task :react-native-webview:mergeReleaseGeneratedProguardFiles
+> Task :react-native-webview:mergeReleaseConsumerProguardFiles
+> Task :react-native-webview:mergeReleaseJavaResource
+> Task :react-native-webview:generateReleaseLintVitalModel
+> Task :react-native-webview:syncReleaseLibJars
+> Task :react-native-webview:bundleReleaseLocalLintAar
+
+> Task :app:createBundleReleaseJsAndAssets
+Android Bundled 2135ms index.ts (616 modules)
+Writing bundle output to: /private/tmp/ytrun.fjCESX/workspace/android/app/build/generated/assets/react/release/index.android.bundle
+Writing sourcemap output to: /private/tmp/ytrun.fjCESX/workspace/android/app/build/intermediates/sourcemaps/react/release/index.android.bundle.packager.map
+Done writing bundle output
+Done writing sourcemap output
+
+> Task :app:preBuild
+> Task :app:preReleaseBuild
+
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[arm64-v8a]
+C/C++: ninja: Entering directory `/private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/.cxx/RelWithDebInfo/1ae5ue1b/arm64-v8a'
+C/C++: /tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/cpp/fabric/ExpoComponentDescriptorFactory.cpp:17:5: warning: 'RawPropsParser' is deprecated [-Wdeprecated-declarations]
+C/C++:    17 |     react::RawPropsParser(/*useRawPropsJsiValue=*/true)
+C/C++:       |     ^
+C/C++: /Users/user/.gradle/caches/9.3.1/transforms/eb2224229ff93535bf21ac0d1e319da4/transformed/react-android-0.86.0-release/prefab/modules/reactnative/include/react/renderer/core/RawPropsParser.h:31:5: note: 'RawPropsParser' has been explicitly marked deprecated here
+C/C++:    31 |   [[deprecated]] explicit RawPropsParser(bool /* ignored */) : RawPropsParser() {}
+C/C++:       |     ^
+C/C++: 1 warning generated.
+
+> Task :app:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :react-native-async-storage_async-storage:lintVitalAnalyzeRelease
+> Task :app:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-webview:lintVitalAnalyzeRelease
+
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[armeabi-v7a]
+C/C++: ninja: Entering directory `/private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/.cxx/RelWithDebInfo/1ae5ue1b/armeabi-v7a'
+C/C++: /tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/cpp/fabric/ExpoComponentDescriptorFactory.cpp:17:5: warning: 'RawPropsParser' is deprecated [-Wdeprecated-declarations]
+C/C++:    17 |     react::RawPropsParser(/*useRawPropsJsiValue=*/true)
+C/C++:       |     ^
+C/C++: /Users/user/.gradle/caches/9.3.1/transforms/eb2224229ff93535bf21ac0d1e319da4/transformed/react-android-0.86.0-release/prefab/modules/reactnative/include/react/renderer/core/RawPropsParser.h:31:5: note: 'RawPropsParser' has been explicitly marked deprecated here
+C/C++:    31 |   [[deprecated]] explicit RawPropsParser(bool /* ignored */) : RawPropsParser() {}
+C/C++:       |     ^
+C/C++: 1 warning generated.
+
+> Task :app:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[x86]
+> Task :app:buildCMakeRelWithDebInfo[armeabi-v7a]
+> Task :app:configureCMakeRelWithDebInfo[x86]
+
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[x86]
+C/C++: ninja: Entering directory `/private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/.cxx/RelWithDebInfo/1ae5ue1b/x86'
+C/C++: /tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/cpp/fabric/ExpoComponentDescriptorFactory.cpp:17:5: warning: 'RawPropsParser' is deprecated [-Wdeprecated-declarations]
+C/C++:    17 |     react::RawPropsParser(/*useRawPropsJsiValue=*/true)
+C/C++:       |     ^
+C/C++: /Users/user/.gradle/caches/9.3.1/transforms/eb2224229ff93535bf21ac0d1e319da4/transformed/react-android-0.86.0-release/prefab/modules/reactnative/include/react/renderer/core/RawPropsParser.h:31:5: note: 'RawPropsParser' has been explicitly marked deprecated here
+C/C++:    31 |   [[deprecated]] explicit RawPropsParser(bool /* ignored */) : RawPropsParser() {}
+C/C++:       |     ^
+C/C++: 1 warning generated.
+
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[x86_64]
+> Task :app:buildCMakeRelWithDebInfo[x86]
+> Task :app:configureCMakeRelWithDebInfo[x86_64]
+
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[x86_64]
+C/C++: ninja: Entering directory `/private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/.cxx/RelWithDebInfo/1ae5ue1b/x86_64'
+C/C++: /tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/cpp/fabric/ExpoComponentDescriptorFactory.cpp:17:5: warning: 'RawPropsParser' is deprecated [-Wdeprecated-declarations]
+C/C++:    17 |     react::RawPropsParser(/*useRawPropsJsiValue=*/true)
+C/C++:       |     ^
+C/C++: /Users/user/.gradle/caches/9.3.1/transforms/eb2224229ff93535bf21ac0d1e319da4/transformed/react-android-0.86.0-release/prefab/modules/reactnative/include/react/renderer/core/RawPropsParser.h:31:5: note: 'RawPropsParser' has been explicitly marked deprecated here
+C/C++:    31 |   [[deprecated]] explicit RawPropsParser(bool /* ignored */) : RawPropsParser() {}
+C/C++:       |     ^
+C/C++: 1 warning generated.
+
+> Task :expo-modules-core:mergeReleaseJniLibFolders
+> Task :expo-modules-core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-modules-core:generateReleaseBuildConfig
+> Task :expo-modules-core:generateReleaseResValues
+> Task :expo-modules-core:generateReleaseResources
+> Task :expo-modules-core:packageReleaseResources
+> Task :expo-modules-core:javaPreCompileRelease
+> Task :expo-modules-core:writeReleaseAarMetadata
+> Task :expo-modules-core:extractDeepLinksRelease
+> Task :expo-modules-core:parseReleaseLocalResources
+> Task :expo-modules-core:generateReleaseRFile
+
+> Task :expo-modules-core:processReleaseManifest
+/private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/AndroidManifest.xml:8:9-11:45 Warning:
+	meta-data#com.facebook.soloader.enabled@android:value was tagged at AndroidManifest.xml:8 to replace other declarations but no other declaration present
+
+> Task :expo-modules-core:compileReleaseLibraryResources
+> Task :expo-modules-core:mergeReleaseNativeLibs
+> Task :expo-modules-core:prepareReleaseArtProfile
+> Task :expo-modules-core:mergeReleaseShaders
+> Task :expo-modules-core:compileReleaseShaders NO-SOURCE
+> Task :expo-modules-core:generateReleaseAssets UP-TO-DATE
+> Task :expo-modules-core:mergeReleaseAssets
+> Task :expo-modules-core:extractProguardFiles
+> Task :expo-modules-core:prepareLintJarForPublish
+> Task :expo-modules-core:extractDeepLinksForAarRelease
+> Task :expo-modules-core:writeReleaseLintModelMetadata
+> Task :expo-modules-core:stripReleaseDebugSymbols
+> Task :expo-modules-core:copyReleaseJniLibsProjectOnly
+> Task :expo-modules-core:copyReleaseJniLibsProjectAndLocalJars
+> Task :app:buildCMakeRelWithDebInfo[x86_64]
+> Task :app:mergeReleaseJniLibFolders
+> Task :app:generateReleaseBuildConfig
+> Task :app:generateReleaseResValues
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:checkReleaseAarMetadata
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:parseReleaseLocalResources
+
+> Task :app:processReleaseMainManifest
+/private/tmp/ytrun.fjCESX/workspace/android/app/src/main/AndroidManifest.xml Warning:
+	provider#expo.modules.filesystem.FileSystemFileProvider@android:authorities was tagged at AndroidManifest.xml:0 to replace other declarations but no other declaration present
+
+> Task :app:expoReleaseOverrideMaxSdkConflicts
+[33m---------- Expo Max Sdk Override Plugin ----------[0m
+[32m>>> No 'android:maxSdkVersion' conflicts found[0m
+[33m--------------------------------------------------[0m
+
+> Task :app:processReleaseManifest
+> Task :app:javaPreCompileRelease
+> Task :app:desugarReleaseFileDependencies
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:mergeReleaseArtProfile
+> Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:extractProguardFiles
+> Task :app:mergeReleaseNativeLibs
+> Task :app:mergeReleaseResources
+> Task :app:collectReleaseDependencies
+> Task :app:processReleaseManifestForPackage
+> Task :app:sdkReleaseDependencyData
+> Task :app:validateSigningRelease
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :app:stripReleaseDebugSymbols
+> Task :app:mergeExtDexRelease
+> Task :app:extractReleaseNativeSymbolTables
+> Task :app:processReleaseResources
+> Task :app:optimizeReleaseResources
+> Task :app:mergeReleaseNativeDebugMetadata
+
+> Task :expo-modules-core:compileReleaseKotlin
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/apploader/AppLoaderProvider.kt:34:52 Unchecked cast of 'Class<*>!' to 'Class<out HeadlessAppLoader>'.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt:14:8 'class UIManagerModule : ReactContextBaseJavaModule, LifecycleEventListener, UIManager' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt:22:8 'typealias ErrorManagerModule = JSLoggerModule' is deprecated. Use JSLoggerModule instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt:61:13 'val hostingRuntimeContext: MainRuntime' is deprecated. Use AppContext.runtimeContext instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt:271:21 'typealias ErrorManagerModule = JSLoggerModule' is deprecated. Use JSLoggerModule instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt:380:21 'val DEFAULT: Int' is deprecated. UIManagerType.DEFAULT will be deleted in the next release of React Native. Use [LEGACY] instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/AppContext.kt:381:10 'class UIManagerModule : ReactContextBaseJavaModule, LifecycleEventListener, UIManager' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/defaultmodules/NativeModulesProxyModule.kt:16:5 'fun Constants(legacyConstantsProvider: () -> Map<String, Any?>): Unit' is deprecated. Use `Constant` or `Property` instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/events/KModuleEventEmitterWrapper.kt:99:21 'fun getEventDispatcherForReactTag(context: ReactContext, reactTag: Int): EventDispatcher?' is deprecated. reactTag is no longer needed.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/events/KModuleEventEmitterWrapper.kt:108:21 'fun getEventDispatcherForReactTag(context: ReactContext, reactTag: Int): EventDispatcher?' is deprecated. reactTag is no longer needed.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewDefinitionBuilder.kt:470:16 'val errorManager: JSLoggerModule?' is deprecated. Use AppContext.jsLogger instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewDefinitionBuilder.kt:470:30 'fun reportExceptionToLogBox(codedException: CodedException): Unit' is deprecated. Use appContext.jsLogger.error(...) instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewManagerDefinition.kt:41:16 'val errorManager: JSLoggerModule?' is deprecated. Use AppContext.jsLogger instead.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-modules-core/android/src/main/java/expo/modules/kotlin/views/ViewManagerDefinition.kt:41:30 'fun reportExceptionToLogBox(codedException: CodedException): Unit' is deprecated. Use appContext.jsLogger.error(...) instead.
+
+> Task :expo-modules-core:compileReleaseJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :expo-modules-core:processReleaseJavaRes
+> Task :expo-modules-core:generateReleaseLintModel
+> Task :expo-modules-core:extractReleaseAnnotations
+> Task :expo-modules-core:mergeReleaseGeneratedProguardFiles
+> Task :expo-modules-core:mergeReleaseConsumerProguardFiles
+> Task :expo-modules-core:mergeReleaseJavaResource
+> Task :expo-modules-core:bundleLibRuntimeToJarRelease
+> Task :expo-modules-core:bundleLibCompileToJarRelease
+> Task :expo-modules-core:syncReleaseLibJars
+> Task :expo-modules-core:createFullJarRelease
+> Task :expo-modules-core:bundleReleaseLocalLintAar
+> Task :expo-modules-core:generateReleaseLintVitalModel
+
+> Task :test-config:compileReleaseKotlin
+w: file:///private/tmp/ytrun.fjCESX/workspace/modules/test-config/android/src/main/java/expo/modules/testconfig/TestConfigModule.kt:17:47 'fun get(p0: String!): Any?' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/modules/test-config/android/src/main/java/expo/modules/testconfig/TestConfigModule.kt:19:38 'fun get(p0: String!): Any?' is deprecated. Deprecated in Java.
+
+> Task :expo-constants:compileReleaseKotlin
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo-linking/node_modules/expo-constants/android/src/main/java/expo/modules/constants/ConstantsModule.kt:13:5 'fun Constants(legacyConstantsProvider: () -> Map<String, Any?>): Unit' is deprecated. Use `Constant` or `Property` instead.
+
+> Task :expo-constants:compileReleaseJavaWithJavac
+> Task :expo-log-box:compileReleaseKotlin
+> Task :expo-constants:bundleLibCompileToJarRelease
+> Task :expo-constants:bundleLibRuntimeToJarRelease
+> Task :test-config:compileReleaseJavaWithJavac
+> Task :expo-constants:processReleaseJavaRes
+> Task :test-config:bundleLibCompileToJarRelease
+> Task :expo-constants:createFullJarRelease
+> Task :test-config:bundleLibRuntimeToJarRelease
+> Task :expo-constants:bundleLibRuntimeToDirRelease
+> Task :test-config:bundleLibRuntimeToDirRelease
+> Task :test-config:processReleaseJavaRes
+> Task :test-config:createFullJarRelease
+> Task :expo-constants:generateReleaseLintModel
+> Task :expo-constants:extractReleaseAnnotations
+> Task :expo-constants:mergeReleaseGeneratedProguardFiles
+> Task :test-config:generateReleaseLintModel
+> Task :expo-constants:mergeReleaseConsumerProguardFiles
+> Task :test-config:extractReleaseAnnotations
+> Task :test-config:mergeReleaseGeneratedProguardFiles
+> Task :test-config:mergeReleaseConsumerProguardFiles
+> Task :expo-constants:mergeReleaseJavaResource
+> Task :test-config:mergeReleaseJavaResource
+> Task :expo-constants:syncReleaseLibJars
+> Task :test-config:syncReleaseLibJars
+> Task :test-config:bundleReleaseLocalLintAar
+> Task :expo-constants:bundleReleaseLocalLintAar
+> Task :test-config:generateReleaseLintVitalModel
+> Task :expo-constants:generateReleaseLintVitalModel
+> Task :expo-log-box:compileReleaseJavaWithJavac
+> Task :expo-log-box:bundleLibCompileToJarRelease
+> Task :expo-log-box:bundleLibRuntimeToJarRelease
+> Task :expo-log-box:processReleaseJavaRes
+> Task :expo-log-box:createFullJarRelease
+> Task :expo-log-box:bundleLibRuntimeToDirRelease
+> Task :expo-log-box:generateReleaseLintModel
+> Task :expo-log-box:extractReleaseAnnotations
+> Task :expo-log-box:mergeReleaseGeneratedProguardFiles
+> Task :expo-log-box:mergeReleaseConsumerProguardFiles
+> Task :expo-log-box:mergeReleaseJavaResource
+> Task :expo-log-box:generateReleaseLintVitalModel
+> Task :expo-log-box:syncReleaseLibJars
+> Task :expo-log-box:bundleReleaseLocalLintAar
+> Task :test-config:lintVitalAnalyzeRelease
+> Task :expo-modules-core:bundleLibRuntimeToDirRelease
+> Task :expo-constants:lintVitalAnalyzeRelease
+
+> Task :expo:compileReleaseKotlin
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo/android/src/main/java/expo/modules/ExpoModulesPackage.kt:34:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:22:8 'class ReactInstanceManager : Any' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:102:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:102:43 'class ReactInstanceManager : Any' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo/android/src/main/java/expo/modules/ReactActivityDelegateWrapper.kt:103:21 'val reactInstanceManager: ReactInstanceManager' is deprecated. Deprecated in Java.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo/android/src/main/java/expo/modules/fetch/ExpoFetchModule.kt:32:39 'constructor(reactContext: ReactContext): ForwardingCookieHandler' is deprecated. Use the default constructor.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo/android/src/main/java/expo/modules/fetch/NativeResponse.kt:42:16 This declaration overrides a deprecated member but is not marked as deprecated itself. Add the '@Deprecated' annotation or suppress the diagnostic.
+w: file:///private/tmp/ytrun.fjCESX/workspace/node_modules/expo/android/src/main/java/expo/modules/fetch/NativeResponse.kt:44:11 'fun deallocate(): Unit' is deprecated. Use sharedObjectDidRelease() instead.
+
+> Task :expo:compileReleaseJavaWithJavac
+> Task :expo:processReleaseJavaRes
+> Task :expo:bundleLibCompileToJarRelease
+> Task :expo:bundleLibRuntimeToJarRelease
+> Task :expo:generateReleaseLintModel
+> Task :expo:createFullJarRelease
+> Task :expo:extractReleaseAnnotations
+> Task :expo:mergeReleaseGeneratedProguardFiles
+> Task :expo:mergeReleaseConsumerProguardFiles
+> Task :expo:mergeReleaseJavaResource
+> Task :expo:bundleLibRuntimeToDirRelease
+> Task :expo:syncReleaseLibJars
+> Task :expo:bundleReleaseLocalLintAar
+> Task :expo:generateReleaseLintVitalModel
+> Task :app:compileReleaseKotlin
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:dexBuilderRelease
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:processReleaseJavaRes
+> Task :expo-log-box:lintVitalAnalyzeRelease
+> Task :app:mergeReleaseJavaResource
+> Task :app:mergeReleaseGlobalSynthetics
+> Task :expo:lintVitalAnalyzeRelease
+> Task :app:mergeDexRelease
+> Task :app:compileReleaseArtProfile
+> Task :expo-modules-core:lintVitalAnalyzeRelease
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:assembleRelease
+
+[Incubating] Problems report is available at: file:///private/tmp/ytrun.fjCESX/workspace/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.3.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 45s
+365 actionable tasks: 336 executed, 29 up-to-date
