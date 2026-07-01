@@ -1,0 +1,8 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true
+  },
+  "include": ["App.tsx", "index.ts", "src/**/*", "modules/**/*"],
+  "exclude": ["node_modules", "android", "__tests__", "jest.config.js", "jest.setup.js"]
+}
