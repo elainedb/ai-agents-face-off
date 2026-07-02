@@ -1,0 +1,13 @@
+{
+  "name": "test-config",
+  "version": "0.1.0",
+  "description": "Local Expo module: reads Android launch-intent extras for UI-test-mode.",
+  "main": "index.ts",
+  "types": "index.ts",
+  "expo": {
+    "config": {
+      "platforms": ["android", "web"]
+    }
+  },
+  "license": "MIT"
+}
