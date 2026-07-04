@@ -1,0 +1,94 @@
+Domain verification status:
+
+Key Set Manager:
+  [dev.mobile.maestro]
+      Signing KeySets: 957
+
+Packages:
+  Package [dev.mobile.maestro] (a30ebc5):
+    appId=13117
+    pccId=-1
+    pkg=Package{9a3522e dev.mobile.maestro}
+    codePath=/data/app/~~nE28P-7-3B_O8NX1T5w4IQ==/dev.mobile.maestro-4q_mcOAfoXNOVVU5WRiVFA==
+    resourcePath=/data/app/~~nE28P-7-3B_O8NX1T5w4IQ==/dev.mobile.maestro-4q_mcOAfoXNOVVU5WRiVFA==
+    legacyNativeLibraryDir=/data/app/~~nE28P-7-3B_O8NX1T5w4IQ==/dev.mobile.maestro-4q_mcOAfoXNOVVU5WRiVFA==/lib
+    extractNativeLibs=false
+    primaryCpuAbi=null
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=1 minSdk=24 targetSdk=36
+    minExtensionVersions=[]
+    versionName=1.0
+    hiddenApiEnforcementPolicy=2
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=4
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP KILL_AFTER_RESTORE ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    pageSizeCompat=0
+    scannedAsStoppedSystemApp=false
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2026-07-04 14:45:29
+    lastUpdateTime=2026-07-04 14:45:29
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    packageSource=1
+    loadingProgress=100%
+    loadingCompletedTime=2026-07-04 14:45:30
+    appMetadataFilePath=null
+    appMetadataSource=0
+    signatures=PackageSignatures{b2831cf version:4, signatures:[a11ba8c6], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP KILL_AFTER_RESTORE ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    requested permissions:
+      android.permission.WRITE_SETTINGS
+      android.permission.ACCESS_FINE_LOCATION
+      android.permission.ACCESS_MOCK_LOCATION
+      android.permission.INTERNET
+      android.permission.ACCESS_COARSE_LOCATION
+      android.permission.CHANGE_CONFIGURATION
+      android.permission.QUERY_ALL_PACKAGES
+    install permissions:
+      android.permission.INTERNET: granted=true
+      android.permission.CHANGE_CONFIGURATION: granted=true
+      android.permission.QUERY_ALL_PACKAGES: granted=true
+    User 0: ceDataInode=0 deDataInode=17944 installed=true hidden=false suspended=false appLockEnabled=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false
+      installReason=0
+      dataDir=/data/user/0/dev.mobile.maestro
+      firstInstallTime=2026-07-04 14:45:29
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+        /data/resource-cache/com.android.systemui-neutral-QwC0.frro
+        /data/resource-cache/com.android.systemui-accent-BOvC.frro
+        /data/resource-cache/com.android.systemui-dynamic-9ed1.frro
+      legacy overlay paths:
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      gids=[3003]
+      runtime permissions:
+        android.permission.ACCESS_FINE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_COARSE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+    dev.mobile.maestro:
+      dev.mobile.maestro.test
+    dev.mobile.maestro.test:
+      dev.mobile.maestro
+  queries via component:
+  queryable via interaction:
+    User 0:
+  queryable via uses-library:
+
+Dexopt state:
+  [dev.mobile.maestro]
+    path: /data/app/~~nE28P-7-3B_O8NX1T5w4IQ==/dev.mobile.maestro-4q_mcOAfoXNOVVU5WRiVFA==/base.apk
+      arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+        [location is error]

@@ -1,0 +1,39 @@
+#!/bin/bash
+if [ ! -f android/app/google-services.json ]; then
+  cat > android/app/google-services.json << 'EOF'
+{
+  "project_info": {
+    "project_number": "1234567890",
+    "project_id": "dummy-project",
+    "storage_bucket": "dummy-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1234567890:android:abcdef123456",
+        "android_client_info": {
+          "package_name": "com.example.ytdash_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1234567890-abcdef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "dummy-api-key"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+EOF
+fi
