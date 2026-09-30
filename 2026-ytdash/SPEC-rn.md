@@ -39,9 +39,9 @@ The YouTube API key is imported from `config.js` in the API service. The authori
 Standard Firebase/Google Sign-In configuration file for Android, placed at the project root (gitignored).
 
 ### `app.json`
-- Package identifiers: `dev.elainedb.rn-gemini` (iOS), `dev.elainedb.rn_gemini` (Android)
+- Package identifiers: `dev.elainedb.rn-<agent>` (iOS), `dev.elainedb.rn_<agent>` (Android), where `<agent>` is `claude`, `gemini`, or `codex`
 - Orientation: portrait
-- URL scheme: `rngemini`
+- URL scheme: `rn<agent>` (`rnclaude`, `rngemini`, `rncodex`)
 
 ---
 

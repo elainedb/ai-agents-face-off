@@ -1,0 +1,35 @@
+name: Flutter
+on:
+  push:
+    branches: [main]
+    paths: ['**/flutter/**', '.github/workflows/flutter.yml']
+  pull_request:
+    paths: ['**/flutter/**', '.github/workflows/flutter.yml']
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ${{ matrix.project }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - 2025-login-feed/flutter/claude
+          - 2025-login-feed/flutter/gemini
+          - 2025-login-feed/flutter/junie
+          - 2026-ytdash/flutter/claude
+          - 2026-ytdash/flutter/gemini
+          - 2026-ytdash/flutter/codex
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Unit tests
+        run: flutter test

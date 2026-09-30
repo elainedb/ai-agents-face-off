@@ -1,0 +1,12 @@
+# Build outputs and binaries never belong in this repo (they were stripped from history on import)
+artifacts/
+dist/
+*.apk
+*.aab
+*.ipa
+jar_patch/
+maestro-driver*/
+maestro-test/
+
+# OS / editor
+.DS_Store
