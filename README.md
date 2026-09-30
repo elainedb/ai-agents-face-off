@@ -41,6 +41,7 @@ List them with `git tag -l '2026-ytdash/flutter-*'`. Each tag's tree is exactly 
 - Every original commit is preserved, rewritten into its subdirectory. Authors and dates are untouched.
 - Committed build outputs were stripped from history: release APKs, an Expo `dist/` bundle, and a decompiled Maestro driver. Together they accounted for about 560 MB of the old repos. Nothing else was removed.
 - The `SPEC.md` files were identical across the three agents of each stack, so they now live once per stack under `2026-ytdash/`. The React Native spec differs per agent only in bundle identifiers and URL scheme, which is noted inline.
+- History was scrubbed of credentials the agents had committed on some run branches: two YouTube Data API keys (since rotated), the sign-in allowlist emails, and a local SDK path. They read `YOUR_YOUTUBE_API_KEY` and `user1@example.com` style placeholders now. The Firebase client config in `firebase_options.dart` is intentionally left as is.
 - Each project keeps its own `sonar-project.properties`; those still point at the old per-repo SonarCloud projects and need re-binding if SonarCloud analysis is wanted again.
 
 ## Running a project
