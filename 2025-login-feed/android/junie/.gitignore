@@ -1,0 +1,20 @@
+# Ignore local and sensitive files
+local.properties
+config.properties
+
+authorized_emails.txt
+app/authorized_emails.txt
+
+debug.keystore
+**/*.keystore
+
+# Android/Gradle typical ignores
+.gradle/
+/local.properties
+**/build/
+.cxx/
+/local-
+.idea/
+.DS_Store
+
+/app/google-services.json
