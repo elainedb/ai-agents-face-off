@@ -22,8 +22,10 @@ while IFS= read -r -d '' src; do
     cp "$src" "$dir/$target"; created+=("$dir/$target")
   fi
 done < <(find . \( -path ./node_modules -o -path ./build -o -path ./.dart_tool -o -path ./coverage \) -prune -o \
-              -type f \( -iname '*.template' -o -iname '*.template.*' -o -iname '*.example' -o -iname '*.example.*' \
-                         -o -iname '*.sample' -o -iname '*.sample.*' -o -iname '*.ci' \) -print0)
+              -type f \( -iname '*.template' -o -iname '*.template.*' -o -iname '*_template.*' \
+                         -o -iname '*.example'  -o -iname '*.example.*'  -o -iname '*_example.*' \
+                         -o -iname '*.sample'   -o -iname '*.sample.*'   -o -iname '*_sample.*' \
+                         -o -iname '*.ci' \) -print0)
 
 # 2) Android projects without any google-services placeholder: synthesize a dummy one.
 for gradle in app/build.gradle.kts app/build.gradle; do
