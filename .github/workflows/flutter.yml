@@ -14,13 +14,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        project:
-          - 2025-login-feed/flutter/claude
-          - 2025-login-feed/flutter/gemini
-          - 2025-login-feed/flutter/junie
-          - 2026-ytdash/flutter/claude
-          - 2026-ytdash/flutter/gemini
-          - 2026-ytdash/flutter/codex
+        include:
+          - { project: 2025-login-feed/flutter/claude, flutter: 3.35.x }
+          - { project: 2025-login-feed/flutter/gemini, flutter: 3.35.x }
+          - { project: 2025-login-feed/flutter/junie,  flutter: 3.35.x }
+          - { project: 2026-ytdash/flutter/claude,     flutter: 3.47.x }
+          - { project: 2026-ytdash/flutter/gemini,     flutter: 3.47.x }
+          - { project: 2026-ytdash/flutter/codex,      flutter: 3.47.x }
     defaults:
       run:
         working-directory: ${{ matrix.project }}
@@ -29,7 +29,10 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: ${{ matrix.flutter }}
           cache: true
+      - name: Prepare placeholder config
+        run: ${{ github.workspace }}/.github/scripts/prepare-project.sh .
       - run: flutter pub get
       - name: Unit tests
         run: flutter test

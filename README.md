@@ -51,6 +51,12 @@ cd 2026-ytdash/flutter/gemini && flutter pub get && flutter test
 cd 2026-ytdash/rn/codex && npm ci --legacy-peer-deps && npm run test:ci
 ```
 
-Most projects need a `google-services.json` and a config file with a YouTube API key. Each project's own README or setup notes explain the specifics; the CI dummies are generated automatically.
+Every project gitignores its real credentials (Google Sign-In config, YouTube API key, email allowlist) and ships a placeholder next to each one. To build or test without credentials, run the same script CI uses; it copies each placeholder into place and never overwrites an existing file:
+
+```bash
+.github/scripts/prepare-project.sh 2025-login-feed/flutter/junie
+```
+
+Each project's own README or setup notes explain how to supply real values.
 
 CI runs unit tests for every project on the stack whose files changed: [Android](.github/workflows/android.yml) · [Flutter](.github/workflows/flutter.yml) · [React Native](.github/workflows/react-native.yml).
