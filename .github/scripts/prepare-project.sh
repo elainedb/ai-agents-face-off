@@ -13,10 +13,10 @@ cd "$project"
 
 created=()
 
-# 1) Placeholders: foo.template, foo.example.js, foo.sample.dart, .env.example, config.properties.ci ...
+# 1) Placeholders: foo.template, foo.example.js, foo.sample.dart, foo_template.properties, .env.example ...
 while IFS= read -r -d '' src; do
   base=$(basename "$src"); dir=$(dirname "$src")
-  target=$(printf '%s' "$base" | sed -E 's/\.(template|example|sample|ci)(\.|$)/\2/')
+  target=$(printf '%s' "$base" | sed -E 's/[._](template|example|sample|ci)(\.|$)/\2/')
   [ "$target" = "$base" ] && continue
   if [ ! -e "$dir/$target" ]; then
     cp "$src" "$dir/$target"; created+=("$dir/$target")
