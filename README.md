@@ -7,6 +7,8 @@ The same mobile app spec, handed to different AI coding agents, on three stacks.
 A YouTube dashboard: Google Sign-In with an email allowlist, a video feed from four channels, local caching, filtering and sorting, a map of recording locations, and performance monitoring. Built in five incremental versions from one spec per stack:
 [Android](2026-ytdash/SPEC-android.md) · [Flutter](2026-ytdash/SPEC-flutter.md) · [React Native](2026-ytdash/SPEC-rn.md)
 
+Each agent also received a per-stack instruction file; see [`2026-ytdash/context-files/`](2026-ytdash/context-files).
+
 | Stack | Claude Code | Gemini | Codex |
 |---|---|---|---|
 | Android (Kotlin, Compose) | [android/claude](2026-ytdash/android/claude) | [android/gemini](2026-ytdash/android/gemini) | [android/codex](2026-ytdash/android/codex) |
